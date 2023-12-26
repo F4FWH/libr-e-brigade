@@ -82,7 +82,7 @@ if ($currentCategory <> "ALL") {
     if ($currentCategory == "INT")
         $queryadd .= " and P_STATUT <> 'EXT'";
     else if ($currentCategory == "NODOG")
-        $queryadd .= " and P_CIVILITE <= 3"; // > 3 = considÃ©rÃ© comme "Animal" dans la fiche personnel
+        $queryadd .= " and P_CIVILITE <= 3"; // > 3 = considéré comme "Animal" dans la fiche personnel
     else
         $queryadd .= " and P_STATUT = '".$currentCategory."'";
 }
