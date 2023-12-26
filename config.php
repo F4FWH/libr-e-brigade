@@ -21,7 +21,7 @@
 // version principale ( = database version)
 $version="5.3";
 // patch version
-$patch_version="5.3.3";
+$patch_version="5.3.4";
 
 // supported versions of PHP
 $php_minimum_version='7.0.0';
