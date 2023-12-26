@@ -326,7 +326,7 @@ $_SESSION['available_statut'] = $available_statut;
   data-pagination-align="center"
   data-pagination="true"
   data-toolbar="#toolbar"
-  data-page-size="12"
+  data-page-size="100"
   data-pagination-parts=["pageSize","pageList"]
   data-page-list=[12,24,48,100,500]
   data-loading-template="<i class='fa fa-spinner fa-spin fa-fw fa-lg'></i>"
