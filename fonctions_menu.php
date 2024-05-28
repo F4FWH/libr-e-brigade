@@ -801,7 +801,7 @@ function write_lateral_menu() {
     $logo = get_logo();
     // $out=""; to do later when writefoot is available everywhere
     $out = "<script>
-                if (($(window).width() <= 991)) { 
+                if (($(window).width() <= 991)) {
                     document.write(\"<div class='' align = center>\");
                 }
                 else {
