@@ -49,7 +49,7 @@ function writehead() {
     //@header("Set-Cookie: secure; HttpOnly");
     //@header("Strict-Transport-Security: max-age=31536000; includeSubDomains; preload");
     ini_set( 'default_charset', 'ISO-8859-1' );
-    $head .= "\n<link rel='stylesheet' href='".$basedir."/css/bootstrap.css?version=".$version."' media='screen'>";
+    $head .= "\n<link rel='stylesheet' href='".$basedir."/css/bootstrap.css?version=".$version."'>";
     $head .= "\n<link rel='stylesheet' href='".$basedir."/css/bootstrap-datepicker.css?version=".$version."' media='screen'>";
     $head .= "\n<link rel='stylesheet' href='".$basedir."/css/main.css?version=".$version."&update=5'>";
     $head .= "\n<link rel='stylesheet' href='".$basedir."/css/print.css?version=".$version."' media='print'>";

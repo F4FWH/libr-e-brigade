@@ -1,35 +1,25 @@
-.noprint
-{
+.noprint {
+  display: none !important;
+}
+.space-left {
+  margin-left: 0px !important;
+}
+.table-responsive {
+  float: none !important;
+  overflow-x: unset !important;
+}
+.dropdown-menu {
   display: none;
 }
 
-A { 
+a { 
   text-decoration: none !important;
 }
 
-BODY {
-  padding:15px;
-  font-size:13px !important;
+body {
+  padding: 15px;
 }
 
-
-INPUT, TEXTAREA {
-  border:0px !important;
-}
-
-TD {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size:13px !important;
-}
-
-SELECT {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding: 2px 30px 2px 2px;
-  border: none;
-}
-
-.toggle-switch{
+.toggle-switch {
   display:none;
 }

@@ -117,7 +117,7 @@ if ( $affichage == 'ecran' ) {
 
     echo "<div align=center class='table-responsive'>";
     echo "<form name='frmExport' action='' >";
-    echo "<div class='div-decal-left'><div align=left class='noprint'>";
+    echo "<div class='div-decal-left'><div align=left>";
     if ( get_children("$filter") <> '' ) {
         $responsive_padding = "";
         if ($subsections == 1 ) $checked='checked';
