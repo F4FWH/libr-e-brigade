@@ -1304,9 +1304,9 @@ input:disabled {
   color: #F1F1F1; }
 
 .SousTotal {
-  color: yellow;
   font-weight: bold;
-  background-color: #2B2350; }
+  background-color: #dbdbdb !important;
+}
 
 .TabTotal {
   color: orange;

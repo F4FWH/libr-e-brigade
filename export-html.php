@@ -58,7 +58,7 @@ function AfficheTableau($tab,$ClassCss,$numcol,$rupture,$somme){
     for($lig=1;$lig<count($tab);$lig++){
         if(count($rupture)>0){
             if(($tab[$lig-1][$colRupture-1]!=$tab[$lig][$colRupture-1]) && $lig>1){
-                $out .=  "\n"."<tr class=SousTotal style='background-color: #2B2350;'><th></th>";
+                $out .=  "\n"."<tr class=SousTotal><th></th>";
                 for($col=0;$col<$numcol;$col++){
                     $css = (count($ClassCss)>0?" class=\"".$ClassCss[$col]."\"":"");
                     
