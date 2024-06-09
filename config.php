@@ -25,7 +25,7 @@ $patch_version="5.4.0";
 
 // supported versions of PHP
 $php_minimum_version='7.4.0';
-$php_maximum_version='8.2.0';
+$php_maximum_version='8.3.0';
 
 // the version of jquery to use
 $jquery_version="3.6.0";
