@@ -19,9 +19,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 // version principale ( = database version)
-$version="5.4";
+$version="5.5";
 // patch version
-$patch_version="5.4.0";
+$patch_version="5.5.0";
 
 // supported versions of PHP
 $php_minimum_version='7.4.0';
