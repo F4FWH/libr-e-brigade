@@ -219,11 +219,11 @@ $limit_days_photo=30;
 $limit_start_date='2020-01-23';
 
 // wiki doc & community pages
-$websitename="ebrigade.app";
-$website="https://".$websitename;
+//$websitename="ebrigade.app";
+//$website="https://".$websitename;
 //$wikiurl="https://doc.".$websitename;
-$wikiurl=$website."/wp/document/";
-$communityurl="https://community.".$websitename;
+//$wikiurl=$website."/wp/document/";
+//$communityurl="https://community.".$websitename;
 
 // taille max des mails ou SMS
 $maxchar_sms=160;
