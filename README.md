@@ -10,6 +10,8 @@ La documentation originale est toujours disponible : http://ebrigade.sourceforge
 
 #### Disclaimer:
 
+La branche principale n'est pas garantie sans bugs. Je ne suis pas developpeur PHP, elle fonctionne pour mes besoins, mais cela peut varier suivant la version de PHP et autres potentiels réglages...
+
 Je n'ai pas d'intention particulière à faire évoluer ce logiciel pour le moment, j'ai juste besoin de le maintenir pour l'utilisation que j'en ai. Je trouve très dommage que l'éditeur original ai arrêté la version OSS, et l'open source me tenant à coeur, ceci est ma contribution pour conserver une version OSS.
 Les contributions externes sont néanmoins les bienvenues :)
 
