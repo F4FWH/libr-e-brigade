@@ -355,7 +355,7 @@ else {
     $sslia=intval(@$conf_array[77]);
     $hospital=intval(@$conf_array[78]);
     $type_organisation=intval(@$conf_array[79]);
-    $ameliorations=intval(@$conf_array[80]);
+    $ameliorations=0;//intval(@$conf_array[80]);
     $animaux=intval(@$conf_array[81]);
     $main_courante=intval(@$conf_array[82]);
     $bilan=intval(@$conf_array[83]);
@@ -399,8 +399,9 @@ $osm_geocode_api="http://api-adresse.data.gouv.fr";
 $waze_url="https://www.waze.com/ul?navigate=yes&zoom=17";
 
 // monitoring, used if $ameliorations = 1
-$monitor_url="https://monitor.ebrigade.org";
-$monitor_token = "88b484689c3d53553defdf9c4c9ab464";
+$ameliorations=0;
+//$monitor_url="https://monitor.ebrigade.org";
+//$monitor_token = "88b484689c3d53553defdf9c4c9ab464";
 
 $debug = false;
 if ( $error_reporting == 0 ) error_reporting(0);
