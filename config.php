@@ -77,13 +77,13 @@ $widget_all_green = "color:$widget_fggreen;background-color:$widget_bggreen";
 $widget_all_blue = "color:$widget_fgblue;background-color:$widget_bgblue";
 $widget_all_orange = "color:$widget_fgorange;background-color:$widget_bgorange";
 
-//identification repertoire  
+//identification repertoire
 $basedir = dirname(__FILE__);
 $curdir = getcwd();
 if ( $basedir <> $curdir ) {
 $reldir = str_replace ( $basedir,'',$curdir);
 $reldir = str_replace ( "\\","/",$reldir );
-$subcnt = substr_count($reldir, "/"); 
+$subcnt = substr_count($reldir, "/");
 if ( $subcnt == 1 ) $basedir = '..';
 if ( $subcnt == 2 ) $basedir = '../..';
 if ( $subcnt == 3 ) $basedir = '../../..';
@@ -119,7 +119,7 @@ $sql=$basedir."/sql/";
 $nbfiles=15;
 
 // Upload files, supported extensions
-$supported_ext = array(".doc",".docx",".zip",".pps",".ppt",".pptx",".xls",".xlsx",".pdf",".jpg",".jpeg",".png",".odt", ".mp3"); 
+$supported_ext = array(".doc",".docx",".zip",".pps",".ppt",".pptx",".xls",".xlsx",".pdf",".jpg",".jpeg",".png",".odt", ".mp3");
 
 // Allowable file Mime Types. Add more mime types if you want
 $supported_mimes = array('image/jpeg','image/jpg','image/gif','image/png','application/msword','application/octet-stream','application/oct-stream',
@@ -161,13 +161,13 @@ $days_disponibilite=60;
 $nbmaxpersonnes=500000;
 $nbmaxpersonnesparsection=500;
 
-// nombre maxi de compétences 
+// nombre maxi de compétences
 $nbmaxpostes=300;
 
 // nombre maxi de sections
-$nbmaxsections=1000; 
+$nbmaxsections=1000;
 
-// nombre maxi de niveaux hiérarchiques 
+// nombre maxi de niveaux hiérarchiques
 $nbmaxlevels=5;
 
 // nombre maxi de groupes utilisateurs ou rôles dans organigramme
@@ -176,7 +176,7 @@ $nbmaxgroupes=50;
 // extended time limit (used in backup / restore), tableau garde
 $mytimelimit=300;
 
-// nb max de parties 
+// nb max de parties
 $nbmaxsessionsparevenement=14;
 
 // output max number of rows
@@ -185,7 +185,7 @@ $maxnumrows=500;
 // nombre max de destinataires mail dans la page message
 $maxdestmessage=400;
 
-// nombre max de destinataires SMS dans la page message 
+// nombre max de destinataires SMS dans la page message
 $maxdestsms=200;
 $maxdestsmsgateway=30;
 
@@ -244,10 +244,10 @@ $types_org = array(
 
 // colors report
 $colors = array(0xff0000, 0x3300CC, 0x00cc00,
-              0xff9900, 0xFF99FF, 0x00CC99, 
-              0x996699, 0xFFCC33, 0x666666,  
-              0xa0bdc4, 0x999966, 0x333366, 
-              0xc3c3e6, 0xc3c3e5, 0xc3c3e3, 
+              0xff9900, 0xFF99FF, 0x00CC99,
+              0x996699, 0xFFCC33, 0x666666,
+              0xa0bdc4, 0x999966, 0x333366,
+              0xc3c3e6, 0xc3c3e5, 0xc3c3e3,
               0xFF3366, 0x5c88c4, 0xf488c4,
               0xba4a4a, 0x97ba99, 0x972399,
               0x653851, 0x133851, 0x51fa13,
@@ -372,7 +372,7 @@ else {
     $min_numbers_in_phone=@$conf_array[101];
     $levels=[@$conf_array[102],@$conf_array[103],@$conf_array[104],@$conf_array[105],@$conf_array[106]];
     $sous_sections=@$conf_array[107];
-    
+
     if ( $nbsections > 0 ) $casernesp=1;
     else $casernesp=0;
     if ( $sdis or $casernesp or $sslia ) $pompiers=1;
@@ -395,7 +395,7 @@ if ( $api_key <> '' ) $google_maps_url .="&key=".$api_key;
 $google_geocode_api="https://maps.googleapis.com/maps/api/geocode";
 // par contre osm est gratuit
 $osm_geocode_api="http://api-adresse.data.gouv.fr";
-// cartes waze 
+// cartes waze
 $waze_url="https://www.waze.com/ul?navigate=yes&zoom=17";
 
 // monitoring, used if $ameliorations = 1
