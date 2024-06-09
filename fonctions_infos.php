@@ -1197,7 +1197,7 @@ function show_about() {
         <td class='widget-text' style='padding-left: 10px'>Vous utilisez ".$application_title." version<b> ".$patch_version."</b></td>
         <td><a href=".$link." ><i class='fas fa-arrow-right grey-button-arrow' title='A propos ".$application_title."'></i></a></td></tr>";
     
-    if ( check_rights($id,14)) {
+    if ( check_rights($id,14) and !empty($download_url)) {
         $data = json_decode(@file_get_contents($download_url), TRUE);
         if ( isset($data["package"]) and   version_compare($patch_version, $data["latest"], '<') )
             $out .= "<tr><td class='alert-icon alert-red' style='width: 40px;height: 40px;display: flex;justify-content: center;align-items: center'><i class='fa fa-arrow-up' style='font-size: 15px;'></i></td>

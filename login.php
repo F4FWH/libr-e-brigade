@@ -87,11 +87,9 @@ $_SESSION['login_error'] = "";
 // ==================================
 // check parameters: try to connect
 // ==================================
-
 $_POST['login_id'] = empty($id) ? '' : $id;
 $SWAL = '';
 if ($id != "" && $pwd != "" ){
-     
     $dbc=connect();
     
     // ================================================
@@ -108,16 +106,16 @@ if ($id != "" && $pwd != "" ){
     $result=mysqli_query($dbc,$query);
     $numrows = mysqli_num_rows($result);
     
-    if($numrows == 0)
+    if ($numrows == 0) {
         $_SESSION['login_error'] = $error_3;
-    else{
+    } else {
         $count = 0;
         while($row = mysqli_fetch_array($result))
             if(my_validate_password($pwd, $row["P_MDP"]))
                 $count++;
-        if($count > 1)
+        if ($count > 1) {
             $_SESSION['login_error'] = $error_9;
-        else{
+        } else {
             mysqli_data_seek($result, 0);
             $row=mysqli_fetch_array($result);
             $P_PASSWORD_FAILURE=intval(@$row["P_PASSWORD_FAILURE"]);

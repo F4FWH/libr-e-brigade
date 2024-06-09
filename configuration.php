@@ -601,7 +601,10 @@ if ($tab == 'conf7') {
     // $data["database"] = nouvelle version de la database
     // exemple {"latest":"5.4.0","date":"2021-02-20","package":"ebrigade_5.4.0.zip","database":"5.4","md5sum":"da3aaf33f5d2b9bc25368787a200cd7e"}
     
-    $data = json_decode(@file_get_contents($download_url), TRUE);
+    if ( ! empty($download_url))
+        $data = json_decode(@file_get_contents($download_url), TRUE);
+    else
+        $data["latest"] = "";
     
 
     $html .=  "<div class='container-fluid tab-buttons-container'>

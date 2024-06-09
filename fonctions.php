@@ -5557,7 +5557,7 @@ function display_post_get() {
       echo "  <td><b>result_name </b></td> \n "; 
       echo "  <td><b>result_val  </b></td> \n "; 
       echo " </tr> \n"; 
-      while (list($result_nme, $result_val) = each($_POST)) { 
+      foreach ($_POST as $result_nme => $result_val) { 
          echo " <tr> \n"; 
          echo "  <td> $result_nme </td> \n"; 
          echo "  <td> $result_val </td> \n"; 
@@ -5572,7 +5572,7 @@ function display_post_get() {
       echo "  <td><b>result_name </b></td> \n "; 
       echo "  <td><b>result_val  </b></td> \n "; 
       echo " </tr> \n"; 
-      while (list($result_nme, $result_val) = each($_GET)) { 
+      foreach ($_GET as $result_nme => $result_val) {
          echo " <tr> \n"; 
          echo "  <td> $result_nme </td> \n"; 
          echo "  <td> $result_val </td> \n"; 

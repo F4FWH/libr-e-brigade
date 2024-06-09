@@ -19,13 +19,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 // version principale ( = database version)
-$version="5.3";
+$version="5.4";
 // patch version
-$patch_version="5.3.4";
+$patch_version="5.4.0";
 
 // supported versions of PHP
-$php_minimum_version='7.0.0';
-$php_maximum_version='7.4.99';
+$php_minimum_version='7.4.0';
+$php_maximum_version='8.2.0';
 
 // the version of jquery to use
 $jquery_version="3.6.0";
@@ -431,3 +431,34 @@ $starttime = get_time();
 //$download_url = "https://download.ebrigade.org/";
 //$download_url = "http://localhost/ebrigade/download/";
 $download_url = "";
+
+
+function var_dump_pre($mixed = null) {
+  echo '<pre>';
+  var_dump($mixed);
+  echo '</pre>';
+  return null;
+}
+
+// Error log
+//error_reporting(E_ALL);
+ini_set('display_errors', 0);
+function shutdown() {
+    $isError = false;
+    if ($error = error_get_last()){
+        switch($error['type']){
+            case E_ERROR:
+            case E_CORE_ERROR:
+            case E_COMPILE_ERROR:
+            case E_USER_ERROR:
+                $isError = true;
+                break;
+        }
+    }
+
+    if ($isError) {
+        error_log("Script execution halted ({$error['message']})");
+        //echo ("Script execution halted ({$error['message']})");
+    }
+}
+register_shutdown_function('shutdown');

@@ -22,10 +22,9 @@ include_once ("config.php");
 function get_def($table) {
     global $dbc;
     $def = "";
-    $def .= "DROP TABLE IF EXISTS $table ;
-";
-    $def .= "CREATE TABLE $table (
-";
+    $def .= "DROP TABLE IF EXISTS $table ;\n";
+    $def .= "CREATE TABLE $table (\n";
+
     $result = mysqli_query($dbc, "SHOW FIELDS FROM $table");
     $l = mysqli_num_rows($result); $k=1;
     while($row = mysqli_fetch_array($result)) {
@@ -33,27 +32,25 @@ function get_def($table) {
         if ($row["Default"] != "") $def .= " DEFAULT '$row[Default]'";
         if ($row["Null"] != "YES") $def .= " NOT NULL";
         if ($row["Extra"] != "") $def .= " $row[Extra]";
-        if ( $k < $l ) $def .= ",
-";
+        if ( $k < $l ) $def .= ",\n";
         $k++;
     }
+
     $result = mysqli_query($dbc,"SHOW KEYS FROM $table");
     while($row = mysqli_fetch_array($result)) {
         $kname=$row["Key_name"];
-          if(($kname != "PRIMARY") && ($row["Non_unique"] == 0)) $kname="UNIQUE|$kname";
-          if(!isset($index[$kname])) $index[$kname] = array();
-          $index[$kname][] = $row["Column_name"];
+        if(($kname != "PRIMARY") && ($row["Non_unique"] == 0)) $kname="UNIQUE|$kname";
+        if(!isset($index[$kname])) $index[$kname] = array();
+        $index[$kname][] = $row["Column_name"];
     }
-    while(list($x, $columns) = @each($index)) {
-          $def .= ",
-";
+
+    foreach ($index as $x => $columns) {
+        $def .= ",\n";
         if($x == "PRIMARY") $def .= "PRIMARY KEY (" . implode( ", ", $columns) . ")";
         else if (substr($x,0,6) == "UNIQUE") $def .= "   UNIQUE ".substr($x,7)." (" . implode(", ", $columns) . ")";
         else $def .= "KEY $x (" . implode(", ", $columns) . ")";
     }
-
-    $def .= "
-);";
+    $def .= ");";
     return (stripslashes($def));
 }
 
@@ -75,12 +72,10 @@ function get_content( $table ) {
     if ( mysqli_num_rows($result) > 0 ) {
         while($row = mysqli_fetch_array($result)) {
             if ( $i == 0 or $i % $blocksize == 0 ) {
-                if ( $i > 0 ) $content = rtrim($content,',').";
-";
+                if ( $i > 0 ) $content = rtrim($content,',').";\n";
                 $content .= "INSERT INTO $table (".get_fields( $table ).") VALUES";
             }
-            $insert = "
-(";
+            $insert = "\n(";
             for($j=0; $j<mysqli_num_fields($result);$j++) {
                 if(!isset($row[$j])) $insert .= "NULL,";
                 else if($row[$j] != "") $insert .= "'".addslashes($row[$j])."',";
@@ -107,20 +102,20 @@ function backup($mode = 'auto') {
     
     $cur_datetime=date("Y-m-d");
     $backupfile=$path.$name."_".$cur_datetime."_".$dbversion.".sql";
-    
+
     if ($mode == "auto" and file_exists($backupfile)) {
         return 1;
     }
-    else {
-        $cur_datetime=date("Y-m-d_H-i");
-        $cur_datetime_auto=date("Y-m-d");
-        $cur_date=date("d M Y");
-        $cur_time=date("H:i");
-        $dumphost=getenv('COMPUTERNAME');
-        $dbversion=get_conf(1);
-        @set_time_limit($mytimelimit);
 
-        $newfile="# ----------------------------------------------------------
+    $cur_datetime=date("Y-m-d_H-i");
+    $cur_datetime_auto=date("Y-m-d");
+    $cur_date=date("d M Y");
+    $cur_time=date("H:i");
+    $dumphost=getenv('COMPUTERNAME');
+    $dbversion=get_conf(1);
+    @set_time_limit($mytimelimit);
+
+    $newfile="# ----------------------------------------------------------
 # MYSQL Database dump
 # Server : $server
 # Database : $database
@@ -132,85 +127,85 @@ function backup($mode = 'auto') {
 SET sql_mode = '';
 ";
 
-        $tables = array();$i=0;
-        $query="show tables";
-        $result=mysqli_query($dbc,$query);
-        while ($row=mysqli_fetch_array($result)) {
-            $tables[$i]=$row[0];
-            $i++;
-        }
+    $tables = array();$i=0;
+    $query="show tables";
+    $result=mysqli_query($dbc,$query);
+    while ($row=mysqli_fetch_array($result)) {
+        $tables[$i]=$row[0];
+        $i++;
+    }
 
-        $num_tables = $i;
-        $i = 0;
+    $num_tables = $i;
+    $i = 0;
 
-        while($i < $num_tables) {
-            $table = $tables[$i];
-            $newfile .= "
+    while($i < $num_tables) {
+        $table = $tables[$i];
+        $newfile .= "
 # ------------------------------------
 # structure for table '$table'
 # ------------------------------------
 ";
-            $newfile .= get_def($table);
-            $newfile .= "
+        $newfile .= get_def($table);
+        $newfile .= "
 # ------------------------------------
 # data for table '$table'
 # ------------------------------------
 ";
-            $newfile .= get_content($table);
-            $newfile .= "";
-            $i++;
-        }
-        $newfile .= "
+        $newfile .= get_content($table);
+        $newfile .= "";
+        $i++;
+    }
+    $newfile .= "
 # ------------------------------------
 # End of backup
 # ------------------------------------
 ";
-        if ( $mode == 'interactif' ) $newbackupfile=$name."_".$cur_datetime."_".$dbversion;
-        if ( $mode == 'auto' ) $newbackupfile=$name."_".$cur_datetime_auto."_".$dbversion;
-        $fp = fopen ($path.$newbackupfile.".sql","w");
-        fwrite ($fp, $newfile);
-        fclose ($fp);
+    if ( $mode == 'interactif' ) $newbackupfile=$name."_".$cur_datetime."_".$dbversion;
+    if ( $mode == 'auto' ) $newbackupfile=$name."_".$cur_datetime_auto."_".$dbversion;
 
-        // -----------------------------------------------------------
-        // Manage Backup files
-        //------------------------------------------------------------
+    $fp = fopen ($path.$newbackupfile.".sql","w");
+    fwrite ($fp, $newfile);
+    fclose ($fp);
 
-        $nbjourmois=date("t");
-        // comptage des fichiers sql : archives récentes
-        $f_arr = array(); $f = 0;
-        $backupdir = opendir($path);
-        $nb=0;
-        while ($filename = readdir($backupdir)){
-            if ($filename != "." && $filename != ".."){
-                if (!is_dir($path.$filename)) {
-                    $path_parts = pathinfo("$filename");
-                    if ( @$path_parts["extension"] == "sql" ) {
-                        $f_arr[$f++] = $filename;
-                        $nb = $nb +1;
-                    }
+    // -----------------------------------------------------------
+    // Manage Backup files
+    //------------------------------------------------------------
+
+    $nbjourmois=date("t");
+    // comptage des fichiers sql : archives récentes
+    $f_arr = array(); $f = 0;
+    $backupdir = opendir($path);
+    $nb=0;
+    while ($filename = readdir($backupdir)){
+        if ($filename != "." && $filename != ".."){
+            if (!is_dir($path.$filename)) {
+                $path_parts = pathinfo("$filename");
+                if ( @$path_parts["extension"] == "sql" ) {
+                    $f_arr[$f++] = $filename;
+                    $nb = $nb +1;
                 }
             }
         }
-        closedir($backupdir);
-        // si dernier jour du mois : archivage
-        if ( date("j") == $nbjourmois) {
-            copy ($path.$newbackupfile.".sql",$path.$newbackupfile.".save");
-        }
-
-        // supprimer les plus vieux pour n'en conserver que le nombre requis
-        $backupdir = opendir($path);
-        sort( $f_arr ); reset( $f_arr );
-        if ( $nb > $nbfiles ) {
-            for( $i=0; $i < count( $f_arr ); $i++ ) {
-                if ( $nb > $nbfiles ) {
-                    unlink($path."/".$f_arr[$i]);
-                    $nb = $nb -1;
-                }
-            }
-        }
-        closedir($backupdir);
-        return 0;
     }
+    closedir($backupdir);
+    // si dernier jour du mois : archivage
+    if ( date("j") == $nbjourmois) {
+        copy ($path.$newbackupfile.".sql",$path.$newbackupfile.".save");
+    }
+
+    // supprimer les plus vieux pour n'en conserver que le nombre requis
+    $backupdir = opendir($path);
+    sort( $f_arr ); reset( $f_arr );
+    if ( $nb > $nbfiles ) {
+        for( $i=0; $i < count( $f_arr ); $i++ ) {
+            if ( $nb > $nbfiles ) {
+                unlink($path."/".$f_arr[$i]);
+                $nb = $nb -1;
+            }
+        }
+    }
+    closedir($backupdir);
+    return 0;
 }
 
 ?>
