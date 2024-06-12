@@ -605,8 +605,9 @@ else {
     if ( $id <> $P_ID and $action <> "detail")
         if (! $granted ) 
                  $query="select 'exception raised'";
+
+    $result=mysqli_query($dbc,$query);
 }
-$result=mysqli_query($dbc,$query);
 
 
 if ( ($action == 'equipe' or $action == 'fonction') and $V_ID > 0) {

@@ -585,32 +585,35 @@ if ( $action <> "delete" and  $action <> "document") {
                 or $cur_EH_DATE_FIN <> $day2."-".$month2."-".$year2 )
             attention_evenement_interdit($section,$type);
     
-            // changer dates / heures des renforts qui ont les mêmes horaires
-            $query="update evenement_horaire set
-                EH_DATE_DEBUT='".$year1."-".$month1."-".$day1."',
-                EH_DATE_FIN='".$year2."-".$month2."-".$day2."',
-                EH_DEBUT='".$debut[$k]."',
-                EH_FIN='".$fin[$k]."',
-                EH_DUREE='".$duree[$k]."',
-                EH_DESCRIPTION='".$description[$k]."'
-                where E_CODE in (".$evts.")
-                and EH_ID=".$k."
-                and EH_DATE_DEBUT = '".$cur_EH_DATE_DEBUT."'
-                and EH_DATE_FIN = '".$cur_EH_DATE_FIN."'
-                and EH_DEBUT = '".$cur_EH_DEBUT."'
-                and EH_FIN = '".$cur_EH_FIN."'";
-            $result=mysqli_query($dbc,$query);
-        
-            // changer duree de participation des inscrits
-            $query="update evenement_participation set EP_DUREE =
-                (   select eh.EH_DUREE from evenement_horaire eh
-                    where eh.E_CODE = evenement_participation.E_CODE 
-                    and eh.EH_ID = evenement_participation.EH_ID
-                    and eh.E_CODE in (".$evts.")
-                )
-                where EP_DEBUT is null
-                and E_CODE in (".$evts.")";
+            if ( ! empty($evts)) {
+                // changer dates / heures des renforts qui ont les mêmes horaires
+                $query="update evenement_horaire set
+                    EH_DATE_DEBUT='".$year1."-".$month1."-".$day1."',
+                    EH_DATE_FIN='".$year2."-".$month2."-".$day2."',
+                    EH_DEBUT='".$debut[$k]."',
+                    EH_FIN='".$fin[$k]."',
+                    EH_DUREE='".$duree[$k]."',
+                    EH_DESCRIPTION='".$description[$k]."'
+                    where E_CODE in (".$evts.")
+                    and EH_ID=".$k."
+                    and EH_DATE_DEBUT = '".$cur_EH_DATE_DEBUT."'
+                    and EH_DATE_FIN = '".$cur_EH_DATE_FIN."'
+                    and EH_DEBUT = '".$cur_EH_DEBUT."'
+                    and EH_FIN = '".$cur_EH_FIN."'";
                 $result=mysqli_query($dbc,$query);
+
+                // changer duree de participation des inscrits
+                $query="update evenement_participation set EP_DUREE =
+                    (   select eh.EH_DUREE from evenement_horaire eh
+                        where eh.E_CODE = evenement_participation.E_CODE 
+                        and eh.EH_ID = evenement_participation.EH_ID
+                        and eh.E_CODE in (".$evts.")
+                    )
+                    where EP_DEBUT is null
+                    and E_CODE in (".$evts.")";
+                $result=mysqli_query($dbc,$query);
+            }
+        
            
             // supprimer puis réinsérer sur l'événement principal
             $query="delete from evenement_horaire where E_CODE=".$evenement." and EH_ID=".$k;

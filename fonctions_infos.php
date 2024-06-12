@@ -1551,6 +1551,7 @@ function show_notes() {
     else $perm_dep = false;
     if ( $section_perm == 0 and $nbsections == 0 ) $list='0';
     else $list=get_family("$section_perm");
+
     $query = "  select p.P_ID,n.NF_ID,NF_CREATE_DATE, n.FS_CODE,
                 concat(upper(p.p_nom),' ',CAP_FIRST(p.p_prenom)) 'beneficiaire',
                 s.S_CODE 'section',
@@ -1592,7 +1593,7 @@ function show_notes() {
                 and n.NF_DEPARTEMENTAL = 1";
         if ( $syndicate == 1 and $section_me > 1 )
             $query .= " and ( n.S_ID in (".$section_parent.",".$section_me.") or s.S_PARENT in (".$section_parent.",".$section_me."))";
-        else if ( $syndicate == 0 or ! multi_check_rights_notes($id,'0') )
+        else if ( ! empty($list) and ($syndicate == 0 or ! multi_check_rights_notes($id,'0')) )
             $query .= " and ( p.P_SECTION in(".$list.") or n.S_ID in(".$list."))";
     }
     if ( $section_me == 0 or ($syndicate == 1 and multi_check_rights_notes($id,'0')) )

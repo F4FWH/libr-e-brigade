@@ -1178,7 +1178,7 @@ function delete_evenement($evenement) {
     $result=mysqli_query($dbc,$query);
    
     $tables=array('demande_renfort_vehicule','remplacement','demande_renfort_materiel','evenement_participation','evenement_vehicule','evenement_materiel',
-                   'evenement_consommable','evenement_facturation','evenement_competences','evenement_horaire','evenement_equipe',
+                   'evenement_consommable','evenement_competences','evenement_horaire','evenement_equipe',
                    'document','personnel_formation','evenement_chef','evenement_log','intervention_equipe','centre_accueil_victime',
                    'evenement_option_choix','evenement_option_group','evenement_option','evenement_piquets_feu','bilan_evenement',
                    'evenement');
