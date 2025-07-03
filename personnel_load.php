@@ -71,11 +71,11 @@ if (isset($_GET["data"])) {
         }
 
         if ($P_OLD_MEMBER > 0) {
-            $etat = "Archivé";
+            $etat = "ArchivÃ©";
             $label_etat = "label-archive";
         }
         else if ($GP_ID == -1) {
-            $etat = "Bloqué";
+            $etat = "BloquÃ©";
             $label_etat = "label-bloqued";
         }
         else {
@@ -118,6 +118,7 @@ if (isset($_GET["data"])) {
          \"photo\":\"<center>".$img."</center>\",
          \"grade\":\"<div style='display:none;'>".$G_LEVEL."</div>$t\",
          \"profession\":\"<span class='boldy'>".$P_PROFESSION."</span>\",
+         \"indicatif\":\"<span class='boldy'>".$P_CODE."</span>\",
          \"lastname\":\"<div style='display:none'>".str_replace("\t"," ",$P_NOM.$P_PRENOM)."</div><span class='boldy'>".str_replace("\t"," ",trim(strtoupper($P_NOM))." ".trim(my_ucfirst($P_PRENOM)))."</span>\",
          \"telephone\":\"<span class='boldy'>".$P_PHONE." <br> ".$P_PHONE2." </span><div style='display: none;'>".$P_PHONE." ".$P_PHONE2."</div>\",
          \"matricule\":\"<span class='boldy'>".fixcharset($P_CODE)."</span>\",
