@@ -70,8 +70,8 @@ $queryadd=" from section, pompier left join company on pompier.C_ID = company.C_
 if ( $company == 0 ) $queryadd .= " and ( company.C_ID = 0 or company.C_ID is null )";
 else if ( $company > 0 ) $queryadd .= " and company.C_ID = $company";
 
-if ( $syndicate == 1 ) { $p="Adhérents"; $r="radiés"; $a="actifs"; }
-else { $p="Personnel"; $r="anciens"; $a="actifs"; $b="bloqués"; }
+if ( $syndicate == 1 ) { $p="AdhÃ©rents"; $r="radiÃ©s"; $a="actifs"; }
+else { $p="Personnel"; $r="anciens"; $a="actifs"; $b="bloquÃ©s"; }
 
 
 $currentCategory = (! isset($category)) ? 'ALL' : $category;
@@ -82,7 +82,7 @@ if ($currentCategory <> "ALL") {
     if ($currentCategory == "INT")
         $queryadd .= " and P_STATUT <> 'EXT'";
     else if ($currentCategory == "NODOG")
-        $queryadd .= " and P_CIVILITE <= 3"; // > 3 = considéré comme "Animal" dans la fiche personnel
+        $queryadd .= " and P_CIVILITE <= 3"; // > 3 = considÃ©rÃ© comme "Animal" dans la fiche personnel
     else
         $queryadd .= " and P_STATUT = '".$currentCategory."'";
 }
@@ -99,19 +99,19 @@ if ( $currentPosition == 'actif' ) {
 elseif( $currentPosition == 'all' ) {
     $queryadd .= "";
     // $title .=" ";
-    $disabledReason = "Veuillez sélectionner les comptes actifs";
+    $disabledReason = "Veuillez sÃ©lectionner les comptes actifs";
 }
 elseif ($currentPosition == 'archive') {
     $queryadd .= " and P_OLD_MEMBER > 1";
     // $title .=" ".$r;
     $mylightcolor="#b3b3b3";
-    $disabledReason = "Veuillez sélectionner les comptes actifs";
+    $disabledReason = "Veuillez sÃ©lectionner les comptes actifs";
 }
 elseif ($currentPosition == 'bloqued') {
     $queryadd .= " and GP_ID = -1 and P_OLD_MEMBER = 0";
     // $title .=" ".$b;
     $mylightcolor="#b3b3b3";
-    $disabledReason = "Veuillez sélectionner les comptes actifs";
+    $disabledReason = "Veuillez sÃ©lectionner les comptes actifs";
 }
 
 $role = get_specific_outside_role();
@@ -285,7 +285,7 @@ if ($num_company[0] > 1) {
         <select title='' id='position_filter' name='position_filter'  class='selectpicker' data-style='btn-default'
         data-container='body' <?php echo "onchange=\"orderfilter('".$order."','".$filter."','".$subsections."',this.value,'".$currentCategory."','".$company."')\""; ?> >
         <?php
-            $etats = ['all'=>'Tous', 'actif'=>'Actif', 'archive'=>'Archivé', 'bloqued'=>'Bloqué'];
+            $etats = ['all'=>'Tous', 'actif'=>'Actif', 'archive'=>'ArchivÃ©', 'bloqued'=>'BloquÃ©'];
 
             foreach ($etats as $value => $libelle) {
                 $selected = "";;
@@ -335,7 +335,7 @@ $_SESSION['available_statut'] = $available_statut;
   <thead>
     <tr class="widget-title" >
         <th title='' data-field="checkbox" data-sortable="false">
-            <input type=checkbox name=CheckAll id=CheckAll onclick=checkAll(document.frmPersonnel.SendMail,this.checked); title='sélectionner/désélectionner tous'>
+            <input type=checkbox name=CheckAll id=CheckAll onclick=checkAll(document.frmPersonnel.SendMail,this.checked); title='sÃ©lectionner/dÃ©sÃ©lectionner tous'>
         </th>
         <th title='' data-field="photo" data-sortable="false">Photo</th>
         <?php if ( $syndicate == 1 ): ?>
@@ -344,16 +344,17 @@ $_SESSION['available_statut'] = $available_statut;
         <?php if ( $grades == 1 ): ?>
         <th data-field="grade" data-sortable="true" class="hide_mobile" >Grade</th>
         <?php endif ?>
-        <th title='' data-field="lastname" data-sortable="true" >Nom Prénom</th>
+        <th title='' data-field="indicatif" data-sortable="true" >Indicatif</th>
+        <th title='' data-field="lastname" data-sortable="true" >Nom PrÃ©nom</th>
         <th title='' data-field="birthdate" data-sortable="true" class="hide_mobile" >Date de naissance</th>
-        <th title='' data-field="telephone" data-sortable="true" class="hide_mobile" >Téléphone</th>
+        <th title='' data-field="telephone" data-sortable="true" class="hide_mobile" >TÃ©lÃ©phone</th>
         <?php if ( $nbsections <> 0 ): ?>
         <th title='' data-field="matricule" data-sortable="true" class="hide_mobile" >Matricule</th>
         <?php endif ?>
         <th title='' data-field="section" data-sortable="true" class="hide_mobile" >Section</th>
-        <th title='' data-field="entree" data-sortable="true" class="hide_mobile" >Date d'entrée</th>
+        <th title='' data-field="entree" data-sortable="true" class="hide_mobile" >Date d'entrÃ©e</th>
         <?php if ($pompiers == 1 ): ?>
-        <th title='' data-field="regime" data-sortable="true" class="hide_mobile" >Régime</th>
+        <th title='' data-field="regime" data-sortable="true" class="hide_mobile" >RÃ©gime</th>
         <?php endif ?>
         <th title='' data-field="statut" data-sortable="true" class="hide_mobile" >Statut</th>
         <th title='' data-field="etat" data-sortable="true" class="hide_mobile" >Position</th>
@@ -462,20 +463,20 @@ if ($number > 0) {
     if ( $ischef ) { $disabled="";$hide_phone=false;$disabledButton = "";}
     
     if ($disabledReason == "") {
-        if ( $disabledButton == "disabled" ) $disabledReason = "Vous n'avez pas la permission d'envoyer des messages (n°43).";
+        if ( $disabledButton == "disabled" ) $disabledReason = "Vous n'avez pas la permission d'envoyer des messages (nÂ°43).";
         else $disabledReason = "Pour activer l'envoi de message, rendez-vous dans la configuration";
     }
     
     if ( $number > 0 ) {
         echo "<div class='action-buttons'>";
         if ( $category <> 'EXT' )
-        echo "<input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-success' onclick=\"SendMailTo2('frmPersonnel','SendMail','Vous devez sélectionner au moins un destinataire.','mail');\" value=\"Envoyer\" title=\"envoyer un message à partir de cette application\" reason=\"$disabledReason\">";
+        echo "<input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-success' onclick=\"SendMailTo2('frmPersonnel','SendMail','Vous devez sÃ©lectionner au moins un destinataire.','mail');\" value=\"Envoyer\" title=\"envoyer un message Ã  partir de cette application\" reason=\"$disabledReason\">";
         if ( check_rights($id, 30) and $nbsections == 0 ) {
-            echo " <input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-primary' onclick=\"SendMailTo2('frmPersonnel','SendMail','Vous devez sélectionner au moins une personne.','badge');\" value=\"Badges\" title=\"imprimer des badges\" reason=\"$disabledReason\">";
+            echo " <input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-primary' onclick=\"SendMailTo2('frmPersonnel','SendMail','Vous devez sÃ©lectionner au moins une personne.','badge');\" value=\"Badges\" title=\"imprimer des badges\" reason=\"$disabledReason\">";
         }
         if ( check_rights($id, 2) or check_rights($id, 26)) {
-            echo " <input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-info' onclick=\"DirectMailTo('frmPersonnel','SendMail','Vous devez sélectionner au moins un destinataire !','mail');\" value=\"Mail\" title=\"envoyer un message avec votre logiciel de messagerie\" reason=\"$disabledReason\">";
-            echo " <input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-dark' onclick=\"SendMailTo2('frmPersonnel','SendMail','Vous devez sélectionner au moins un destinataire.','listemails');\" value=\"Télécharger\" title=\"Récupérer la liste des adresses email\" reason=\"$disabledReason\">";
+            echo " <input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-info' onclick=\"DirectMailTo('frmPersonnel','SendMail','Vous devez sÃ©lectionner au moins un destinataire !','mail');\" value=\"Mail\" title=\"envoyer un message avec votre logiciel de messagerie\" reason=\"$disabledReason\">";
+            echo " <input ".$disabledButton." type=\"button\" class='btn btn-light btn-text-dark' onclick=\"SendMailTo2('frmPersonnel','SendMail','Vous devez sÃ©lectionner au moins un destinataire.','listemails');\" value=\"TÃ©lÃ©charger\" title=\"RÃ©cupÃ©rer la liste des adresses email\" reason=\"$disabledReason\">";
         }
     }
     echo "<input type=\"hidden\" name=\"SelectionMail\" id=\"SelectionMail\"></div></form>";
