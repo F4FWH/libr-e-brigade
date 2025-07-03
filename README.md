@@ -1,9 +1,16 @@
-#Récupération du Fork par F4FWH
+# Récupération du Fork par F4FWH
+
 But maintenir et apporter des modifications à la version de e-Brigade dernière en date pour maintenir opérationnel cette version et apporter des options nécessaires, notamment pour l'usage ADRASEC.
+
 ##########################
+
 Fork en date du 03/07/2025
+
+##########################
+
 Message d'origine du Fork de eBrigade par GIPdA : https://github.com/GIPdA/libreBrigade
-# libreBrigade
+
+## libreBrigade
 
 Ceci est un fork de eBrigade basé sur la dernière version open source disponible (5.3.2).
 
@@ -22,7 +29,7 @@ Les contributions externes sont néanmoins les bienvenues :)
 
 
 
-#### eBrigade
+##### eBrigade
 
 L'éditeur original a annoncé le 15/07/2022 que eBrigade open source ne recevra plus aucune mise à jour. La version 5.3.2 est la dernière disponible. 
 Voir le fichier README-eBrigade 5.3.2.txt pour les informations de cette version.
