@@ -18,7 +18,7 @@
   # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //=====================================================================
-// affiche les diffÈrents messages
+// affiche les diff√©rents messages
 //=====================================================================
 
 function write_msgbox($type, $image, $message, $top, $left, $width=400) {
@@ -57,17 +57,17 @@ function param_error_msg($button='retour'){
         $txt = "<p>".$error_8."<p align=center><input type=submit  class='btn btn-default' value='fermer' onclick='javascript:window.close();'></p>";
     else
         $txt = "<p>".$error_8."<p align=center><input type=submit  class='btn btn-secondary' value='Retour' onclick='javascript:history.back(1);'></p>";
-    write_msgbox("Erreur de paramËtres", $error_pic, $txt, 30, 30);
+    write_msgbox("Erreur de param√®tres", $error_pic, $txt, 30, 30);
 }
 
 
 function write_help_habilitations() {
     global $application_title;
-    $help="Les permissions sur l'application sont divisÈes en trois catÈgories. Les droits d'accËs sont dÈfinis au niveau de la fiche personnel.
-    Chaque utilisateur peut avoir deux droits d'accËs, dont les permissions s'additionnent. La portÈe de ces permissions est limitÈe ‡ la section d'appartenance.
-    Et ces permissions peuvent s'Ètendre au niveau supÈrieur (exemple dÈpartement) si la case est cochÈe. Puis il y a des permissions qui s'appliquent ‡ un certain 
-    niveau de l'organigramme, soit sous forme de rÙle (prÈsident, secrÈtaire gÈnÈral) pour ceux qui sont Èlus officiellement ou sous forme de permission de l'organigramme
-    si les personnes doivent seulement utiliser des fonctionnalitÈs de $application_title (exemples: EmployÈ, Gestion des vÈhicules).";
+    $help="Les permissions sur l'application sont divis√©es en trois cat√©gories. Les droits d'acc√®s sont d√©finis au niveau de la fiche personnel.
+    Chaque utilisateur peut avoir deux droits d'acc√®s, dont les permissions s'additionnent. La port√©e de ces permissions est limit√©e √† la section d'appartenance.
+    Et ces permissions peuvent s'√©tendre au niveau sup√©rieur (exemple d√©partement) si la case est coch√©e. Puis il y a des permissions qui s'appliquent √† un certain 
+    niveau de l'organigramme, soit sous forme de r√¥le (pr√©sident, secr√©taire g√©n√©ral) pour ceux qui sont √©lus officiellement ou sous forme de permission de l'organigramme
+    si les personnes doivent seulement utiliser des fonctionnalit√©s de $application_title (exemples: Employ√©, Gestion des v√©hicules).";
     $info="<a href='#' data-toggle='popover' data-trigger='hover' data-content=\"".$help."\"><i class='fa fa-question-circle fa-lg'></i></a>";
     return $info;
 }
@@ -172,12 +172,12 @@ function write_photo_warning($pid) {
         if ( $days < $limit_days_photo ) {
             $alert_style='warning';
             $reste = $limit_days_photo - $days;
-            $message="Attention, vous n'avez pas encore enregistrÈ de photo.";
+            $message="Attention, vous n'avez pas encore enregistr√© de photo.";
             $message .= " Il vous reste <b>".$reste." jours</b> pour enregistrer votre photo.";
         }
         else if ( $days >= $limit_days_photo ) {
             $alert_style='danger';
-            $message="Vous ne pouvez plus vous inscrire sur les activitÈs tant que votre photo ne sera pas enregistrÈe.";
+            $message="Vous ne pouvez plus vous inscrire sur les activit√©s tant que votre photo ne sera pas enregistr√©e.";
         }
         return "<div class='alert-container'><div class='alert-message' role='alert' >".$message."</div></div>";
     }
@@ -216,7 +216,7 @@ function write_competence_warning($pid) {
 
     if ( $id == $pid ) $vos="vos";
     else $vos="";
-    $message="Attention, expiration prochaine de ".$vos." compÈtences, <a href=upd_personnel.php?pompier=".$pid."&tab=2>Voir dÈtail</a><br>";
+    $message="Attention, expiration prochaine de ".$vos." comp√©tences, <a href=upd_personnel.php?pompier=".$pid."&tab=2>Voir d√©tail</a><br>";
     while ( $row = mysqli_fetch_array($result)) {
         $message .= $row["TYPE"]." expire dans ".$row["NB"]." jours, le ".$row["Q_EXPIRATION"].", ";
     }
@@ -232,7 +232,7 @@ function check_feature($param) {
     global $error_pic, $$param;
     if ( ! isset ($$param)) return 0;
     if ( $$param == 0 ) {
-        write_msgbox("ERREUR", $error_pic, "La fonctionnalitÈ ".$param." est dÈsactivÈe.",10,0);
+        write_msgbox("ERREUR", $error_pic, "La fonctionnalit√© ".$param." est d√©sactiv√©e.",10,0);
         writefoot();
         exit;
     }
@@ -246,8 +246,8 @@ function write_do_not_modify($ID_API) {
     if ($import_api and intval($ID_API) > 0) {
         $chunks=explode('/',$import_api_url);
         if ($chunks[2] <> '' ) $url="<a href='http://".$chunks[2]."'>".$chunks[2]."</a>";
-        else $url = "le site fÈdÈral";
-        return "<div class='alert alert-warning' role='alert' >Faites les modifications dans le coffre fort sur ".$url.", les changements sont synchronisÈes ici toutes les 10'.</div>";
+        else $url = "le site f√©d√©ral";
+        return "<div class='alert alert-warning' role='alert' >Faites les modifications dans le coffre fort sur ".$url.", les changements sont synchronis√©es ici toutes les 10'.</div>";
     }
     return '';
 }
@@ -304,7 +304,7 @@ function extract_qr_code($pid, $action='data') {
         if ( $row["p_birthplace"] <> '' ) $texte .= " a ".$row["p_birthplace"];
     }
     if ( $row["COUNTRY"] <> '' ) {
-        $texte .= "\nNationalitÈ: ".$row["COUNTRY"];
+        $texte .= "\nNationalit√©: ".$row["COUNTRY"];
     }
     $texte .= "\nSection: ".$row["s_code"];
     if ( $row["p_address"] <> '' ) {
@@ -386,7 +386,7 @@ function revert_date($date,$with_quotes=true) {
 }
 
 //=====================================================================
-// gÈnÈrer numÈro comptable
+// g√©n√©rer num√©ro comptable
 //=====================================================================
 
 function get_new_nfcode() {
@@ -401,7 +401,7 @@ function get_new_nfcode() {
 }
 
 //=====================================================================
-// gÈnÈrer id radio
+// g√©n√©rer id radio
 //=====================================================================
 
 function generate_id_radio($section) {
@@ -477,7 +477,7 @@ function create_session($P_ID, $mode='default') {
     if ( $password_failure > 0 ) {
          if (( $P_PASSWORD_FAILURE >= $password_failure ) and ( $LAST <= $passwordblocktime )) {
             if ( $mode == 'default' ) 
-                write_msgbox("erreur connexion",$error_pic,"Le compte ".$P_CODE." est temporairement bloquÈ.\n Veuillez vous reconnecter dans 30 minutes ou contacter votre administrateur en lui demandant de changer votre mot de passe.<p align=center><a href=$identpage><input type='submit' class='btn btn-secondary' value='Retour'></a>",30,30);
+                write_msgbox("erreur connexion",$error_pic,"Le compte ".$P_CODE." est temporairement bloqu√©.\n Veuillez vous reconnecter dans 30 minutes ou contacter votre administrateur en lui demandant de changer votre mot de passe.<p align=center><a href=$identpage><input type='submit' class='btn btn-secondary' value='Retour'></a>",30,30);
             session_unset();
             session_destroy();
             exit;
@@ -519,7 +519,7 @@ function create_session($P_ID, $mode='default') {
     $_SESSION['SES_FAVORITE']=$P_FAVORITE_SECTION;
     $_SESSION['SES_NBS']=$NBS;
 
-    //Ajouter les variable PrÈferences Utilisateur 
+    //Ajouter les variable Pr√©ferences Utilisateur 
 
     $user_preferences=[];
 
@@ -538,14 +538,14 @@ function create_session($P_ID, $mode='default') {
 
     $user_preferences['5'] = @$timezone["S_TIMEZONE"];
 
-    $_SESSION['TOOLTIP'] = isset($user_preferences['1']) ? $user_preferences['1'] : 0;
+    $_SESSION['TOOLTIP'] = isset($user_preferences['1']) ? $user_preferences['1'] : 1;
     $_SESSION['LANGUE'] = isset($user_preferences['2']) ? $user_preferences['2'] : 'FR';
-    $_SESSION['sectionorder'] = isset($user_preferences['4']) ? $user_preferences['4'] : 'hierarchique';
+    $_SESSION['sectionorder'] = isset($user_preferences['4']) ? $user_preferences['4'] : 'alphabetique';
     $_SESSION['TIMEZONE'] = $user_preferences['5'];
 
     unset_permissions();
      
-    // insÈrer dans la table d'audit
+    // ins√©rer dans la table d'audit
     $query="insert into audit (P_ID, A_DEBUT, A_OS, A_BROWSER, A_IP) 
     select ".$P_ID.",NOW(),'".$A_OS."','".$A_BROWSER."','".$_SERVER["REMOTE_ADDR"]."'";
     $result=mysqli_query($dbc,$query);
@@ -633,7 +633,7 @@ function secure_file_name($input) {
     $extension = strtolower($path_parts['extension']);
     $excluded = array('php','js','ini');
     if ( in_array($extension,$excluded) or $basename <> $input ) {
-        write_msgbox("ERREUR", $error_pic, "ParamËtres incorrects ".$dirname." ".$basename,10,0);
+        write_msgbox("ERREUR", $error_pic, "Param√®tres incorrects ".$dirname." ".$basename,10,0);
         insert_log('ATTACK', $_SESSION['id'], $_SERVER["REMOTE_ADDR"]." download try ".secure_input($dbc,$input));
         exit;
     }
@@ -815,7 +815,7 @@ function phone_display_format($field) {
     // short
     else if ( $len == 6 and $first > 0 ) 
         $out= substr($raw,0,2)." ".substr($raw,2,2)." ".substr($raw,4,2);
-    // short, prefix 3, exemple calÈdonie
+    // short, prefix 3, exemple cal√©donie
     else if ( $len == 9 and $first > 0 )
         $out= substr($raw,0,3)." ".substr($raw,3,2)." ".substr($raw,5,2)." ".substr($raw,7,2)." ".substr($raw,9,2);
     // long 11, prefix 2, exemple suisse
@@ -844,17 +844,17 @@ function show_contry_code($field) {
     else if ( $three_fisrt == 352 ) return print_flag(352,'luxembourg.png','Luxembourg');
     else if ( $three_fisrt == 376 ) return print_flag(376,'andorra.png','Andorre');
     else if ( $three_fisrt == 377 ) return print_flag(377,'monaco.png','Monaco');
-    else if ( $three_fisrt == 262 ) return print_flag(262,'reunion.png','RÈunion et Mayotte');
+    else if ( $three_fisrt == 262 ) return print_flag(262,'reunion.png','R√©union et Mayotte');
     else if ( $three_fisrt == 508 ) return print_flag(508,'saint_pierre_and_miquelon.png','Saint Pierre et Miquelon');
     else if ( $three_fisrt == 590 ) return print_flag(590,'guadeloupe.png','Guadeloupe');
     else if ( $three_fisrt == 596 ) return print_flag(596,'martinique.png','Martinique');
-    else if ( $three_fisrt == 687 ) return print_flag(687,'new_caledonia.png','Nouvelle CalÈdonie');
-    else if ( $three_fisrt == 689 ) return print_flag(689,'french_polynesia.png','PolynÈsie FranÁaise');
+    else if ( $three_fisrt == 687 ) return print_flag(687,'new_caledonia.png','Nouvelle Cal√©donie');
+    else if ( $three_fisrt == 689 ) return print_flag(689,'french_polynesia.png','Polyn√©sie Fran√ßaise');
     else return "";
 }
 
 function print_flag($code,$picture,$name) {
-    return "<img src='images/flags/".$picture."' title='".$name." prÈfixe ".$code."' width='15'>";
+    return "<img src='images/flags/".$picture."' title='".$name." pr√©fixe ".$code."' width='15'>";
 }
 
 //=====================================================================
@@ -899,7 +899,7 @@ function get_accept_date ($user,$num=0) {
     global $dbc;
     $col='P_ACCEPT_DATE';
     if ( intval($num) > 0 ) $col .= $num;
-    $query="select date_format(".$col.",'le %d-%m-%Y ‡ %H:%i') from pompier where  P_ID =".intval($user);
+    $query="select date_format(".$col.",'le %d-%m-%Y √† %H:%i') from pompier where  P_ID =".intval($user);
     $res = mysqli_query($dbc,$query);
     $row = @mysqli_fetch_array($res);
     $date_accept=$row[0];
@@ -915,7 +915,7 @@ function reset_accept_date ($num=0) {
 } 
 
 //=====================================================================
-// signature du prÈsident disponible?
+// signature du pr√©sident disponible?
 //=====================================================================
 function signature_president_disponible($section) {
     global $nbmaxlevels, $dbc;
@@ -944,16 +944,16 @@ function signature_president_disponible($section) {
 }
 
 //=====================================================================
-// tester rÈpertoires
+// tester r√©pertoires
 //=====================================================================
 function check_folder_permissions ( $folder ) {
     global $error_pic;
     if (! file_exists($folder)) {
-        write_msgbox("Erreur de rÈpertoire ",$error_pic,"<p>Le rÈpertoire<b> $folder </b>n'existe pas, <br>vous devez le crÈer manuellement.<p><input type=submit  class='btn btn-secondary' value='Retour' onclick='javascript:history.back(1);'></p>",30,30);
+        write_msgbox("Erreur de r√©pertoire ",$error_pic,"<p>Le r√©pertoire<b> $folder </b>n'existe pas, <br>vous devez le cr√©er manuellement.<p><input type=submit  class='btn btn-secondary' value='Retour' onclick='javascript:history.back(1);'></p>",30,30);
         exit;
     }
     else if (! is_writable($folder)) {
-        write_msgbox("Erreur de permissions ",$error_pic,"<p>Impossible d'Ècrire dans le rÈpertoire<b> $folder </b><br>vous devez donner les permissions manuellement.<p><input type=submit  class='btn btn-secondary' value='Retour' onclick='javascript:history.back(1);'></p>",30,30);
+        write_msgbox("Erreur de permissions ",$error_pic,"<p>Impossible d'√©crire dans le r√©pertoire<b> $folder </b><br>vous devez donner les permissions manuellement.<p><input type=submit  class='btn btn-secondary' value='Retour' onclick='javascript:history.back(1);'></p>",30,30);
         exit;
     }
     return true;
@@ -964,7 +964,7 @@ function check_folder_permissions ( $folder ) {
 //=====================================================================
 function convert_period_name($id,$name,$dispo_periodes){
     $out = $name;
-    if ( $dispo_periodes == 1 ) $out = 'PÈriodes de 24h';
+    if ( $dispo_periodes == 1 ) $out = 'P√©riodes de 24h';
     if ( $dispo_periodes == 2 and $id == 1) $out = 'Jour';
     return $out;
 }
@@ -1178,7 +1178,7 @@ function delete_evenement($evenement) {
     $result=mysqli_query($dbc,$query);
    
     $tables=array('demande_renfort_vehicule','remplacement','demande_renfort_materiel','evenement_participation','evenement_vehicule','evenement_materiel',
-                   'evenement_consommable','evenement_competences','evenement_horaire','evenement_equipe',
+                   'evenement_consommable','evenement_facturation','evenement_competences','evenement_horaire','evenement_equipe',
                    'document','personnel_formation','evenement_chef','evenement_log','intervention_equipe','centre_accueil_victime',
                    'evenement_option_choix','evenement_option_group','evenement_option','evenement_piquets_feu','bilan_evenement',
                    'evenement');
@@ -1277,13 +1277,13 @@ function justificatifs_info($nfid, $class='medium') {
             $person=$row["P_ID"];
             $section=$row["P_SECTION"];
             $j .= "<div class='alert alert-warning' role='alert' align='center'><i class ='fa fa-exclamation-triangle fa-lg' style='color:orange'></i>
-            Attention il n'y a aucun justificatif attachÈ ‡ la note de frais. Veuillez en ajouter pour que la note soit complËte.
+            Attention il n'y a aucun justificatif attach√© √† la note de frais. Veuillez en ajouter pour que la note soit compl√®te.
             <input type='button' class='btn btn-default' value='Ajouter justificatifs' 
                     onclick=\"javascript:self.location.href='upd_document.php?person=".$person."&section=".$section."&note=".$nfid."';\" ></div>";
     }
     else {
         if ($nbjustif > 1 ) $s="s"; else $s="";
-        $j .= "<div class='alert alert-success' role='alert' align='center'>".$nbjustif." justificatif".$s." attachÈ".$s." ‡ la note de frais.</div>";
+        $j .= "<div class='alert alert-success' role='alert' align='center'>".$nbjustif." justificatif".$s." attach√©".$s." √† la note de frais.</div>";
     }
     return $j;
 }
@@ -1373,7 +1373,7 @@ function get_info_evenement($evenement,$breadcrumb=NULL) {
         $out.="<div class='only_mobile' style='text-align:left;position:relative;'><span>".$E_LIBELLE."</span></div>";
         $out.="<div class='hide_mobile' style='text-align:left;position:relative;top:-8px'><span>".$E_LIBELLE."</span>"."<br>";
         $out.="<span class='hide_mobile' style='font-size:12px;color:#808080;position:relative;top: -10px;'>
-              du $mydate ‡ $myhour au $mydate2 ‡ $myhour2</span></div></div>";
+              du $mydate √† $myhour au $mydate2 √† $myhour2</span></div></div>";
         return $out;
     }
 
@@ -1523,16 +1523,16 @@ function get_inter_victimes_stats($evenement) {
 
 function get_detailed_stats($evenement) {
     $conf=array(
-        array('VI_DETRESSE_VITALE', 'dÈtresse vitale', 'dÈtresses vitales'),
-        array('VI_DECEDE', 'dÈcËs', 'dÈcËs'),
+        array('VI_DETRESSE_VITALE', 'd√©tresse vitale', 'd√©tresses vitales'),
+        array('VI_DECEDE', 'd√©c√®s', 'd√©c√®s'),
         array('VI_MALAISE', 'malaise', 'malaises'),
-        array('VI_INFORMATION', 'personne assistÈe', 'personnes assistÈes'),
+        array('VI_INFORMATION', 'personne assist√©e', 'personnes assist√©es'),
         array('VI_SOINS', 'soins', 'soins'),
-        array('VI_MEDICALISE', 'mÈdicalisation', 'mÈdicalisations'),
+        array('VI_MEDICALISE', 'm√©dicalisation', 'm√©dicalisations'),
         array('VI_TRAUMATISME', 'traumatisme', 'traumatismes'),
         array('VI_REFUS', 'refus de prise en charge', 'refus de prise en charge'),
-        array('VI_IMPLIQUE', 'impliquÈ indemne', 'impliquÈ indemne'),
-        array('VI_VETEMENT', 'don de vÍtements', 'dons de vÍtements'),
+        array('VI_IMPLIQUE', 'impliqu√© indemne', 'impliqu√© indemne'),
+        array('VI_VETEMENT', 'don de v√™tements', 'dons de v√™tements'),
         array('VI_ALIMENTATION', 'alimentation', 'alimentations'),
         array('VI_REPOS', 'mise au repos', 'mises au repos'),
         array('VI_TRANSPORT', 'transports', 'transports')
@@ -1655,14 +1655,14 @@ function dateCheckPublicholiday($date) {
     if($jour == 15    && $mois == 8)    return 1; // 15 aout
     if($jour == 1    && $mois == 11)    return 1; // 1er novembre
     if($jour == 11    && $mois == 11)    return 1; // 11 novembre
-    if($jour == 25    && $mois == 12)    return 1; // 25 dÈcembre
+    if($jour == 25    && $mois == 12)    return 1; // 25 d√©cembre
     
-    // P‚ques
+    // P√¢ques
     $date_paques = @easter_date($annee);
     $jour_paques = date('d',$date_paques);
     $mois_paques = date('m',$date_paques);
 
-    // Lundi de P‚ques
+    // Lundi de P√¢ques
     $date_lundi_paques = dateAddDay($date_paques,1);
     if(date('d',$date_lundi_paques) == $jour && date('m',$date_lundi_paques) == $mois)
         return 1;
@@ -1680,7 +1680,7 @@ function dateCheckPublicholiday($date) {
 }
 
 //=====================================================================
-// est ce que une date est un WE ou un fÈriÈ?
+// est ce que une date est un WE ou un f√©ri√©?
 //=====================================================================
 
 function dateCheckFree($date){
@@ -1729,10 +1729,10 @@ function countWeekDaysBetweenTwoDates($date1,$date2){
 //=====================================================================
 function get_prefix_section($section){
     global $nbsections, $association_dept_name;
-    if ( substr($section,0,4) == 'FÈdÈ') $s = "la";
+    if ( substr($section,0,4) == 'F√©d√©') $s = "la";
     else if ( substr($section,0,5) == 'Prote') $s = "la";
-    else if ( substr($section,0,4) == 'DÈlÈ') $s = "la";
-    else if ( substr($section,0,5) == 'RÈser') $s = "la";
+    else if ( substr($section,0,4) == 'D√©l√©') $s = "la";
+    else if ( substr($section,0,5) == 'R√©ser') $s = "la";
     else if ( $nbsections == 0 ) {
         $voyels = array('A','E','I','O','U','Y','H','a','e','i','o','u','y','h');
         $short2=strtolower(substr($section,0,2));
@@ -1744,9 +1744,9 @@ function get_prefix_section($section){
     
         if ( $short3 == 'la ' ) $s = "de";
         else if ( $short5 == 'vienn' )  $s = "de la";
-        else if ( $short5 == 'cÙte-' )  $s = "de";
+        else if ( $short5 == 'c√¥te-' )  $s = "de";
         else if ( $short5 == 'saint' ) $s = "de";
-        else if ( $short5 == 'drÙme' )  $s = "de la";
+        else if ( $short5 == 'dr√¥me' )  $s = "de la";
         else if ( $short5 == 'corse' )  $s = "de la";
         else if ( $short5 == 'walli' ) $s = "de";
         else if ( $short5 == 'alpes' or $short5 == 'hauts' or $short5 == 'arden' or $last2 == 'es' or $short2 == 'bo' or $last2 == 'or' ) $s = "des";
@@ -1754,10 +1754,10 @@ function get_prefix_section($section){
         else if ( $short5 == 'loire' or $short5 == 'sarth' or $short5 == 'somme') $s = "de la";
         else if ( $short5 == 'haute' or $short5 == 'paris') $s = "de";
         else if ( $short2 == 'ai' ) $s = "de l'";
-        else if ( $last2 == 'in' or $short5 == 'rhÙne') $s = " du ";
+        else if ( $last2 == 'in' or $short5 == 'rh√¥ne') $s = " du ";
         else if ( in_array($short1 , $voyels) ) $s = "de l'";
         else if ( $short5 == 'maine' or  $short2 == 'fi' or  $short2 == 'pu' or $short2 == 'pa' or $short2 == 'va' or  $short5 == 'lot e' or  $short2 == 'ta') $s = "du";
-        else if ( $short2 == 'ma' or $short2 == 'me' or $short2 == 'rÈ' or $short2 == 'cÙ' or $short2 == 'ni' or $short2 == 'cr') $s = "de la";
+        else if ( $short2 == 'ma' or $short2 == 'me' or $short2 == 'r√©' or $short2 == 'c√¥' or $short2 == 'ni' or $short2 == 'cr') $s = "de la";
         else if ( $last1 == 'e' or $last2 == 'is') $s = "de";
         else $s = "du";
         $s = $association_dept_name." ".$s;
@@ -1854,7 +1854,7 @@ function validateMd5String($md5) {
 //=====================================================================
 // get number days after block
 //=====================================================================
-// pour bloquer les changements dans le passÈ
+// pour bloquer les changements dans le pass√©
 function get_number_days_after_block($evenement) {
     global $dbc;
     $query="select s.NB_DAYS_BEFORE_BLOCK from section s, evenement e where e.S_ID=s.S_ID and e.E_CODE=".$evenement;
@@ -1872,11 +1872,11 @@ function get_number_days_after_block($evenement) {
 
 
 //=====================================================================
-// semaines, utilisÈes dans horaires et tableau_garde
+// semaines, utilis√©es dans horaires et tableau_garde
 //=====================================================================
 function get_day_from_week($week,$year,$jourdelasemaine=0,$outputFormat='S') {
-    // $jourdelasemaine=0 ‡ 6 :0=lundi, 6=dimanche)
-    // $outputFormat=N ou S : annee-mois-jour ou S: string (Lundi 03 dÈcembre) ou M: mois (01)
+    // $jourdelasemaine=0 √† 6 :0=lundi, 6=dimanche)
+    // $outputFormat=N ou S : annee-mois-jour ou S: string (Lundi 03 d√©cembre) ou M: mois (01)
     $jours=array("lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche");
     $joursCourt=array("lun.","mar.","mer.","jeu.","ven.","sam.","dim.");
     $firstDayInYear=date("N",mktime(0,0,0,1,1,$year));
@@ -1895,7 +1895,7 @@ function get_day_from_week($week,$year,$jourdelasemaine=0,$outputFormat='S') {
 }
 
 //=====================================================================
-// infos ÈvÈnement
+// infos √©v√©nement
 //=====================================================================
 function get_partie_max($evenement) {
     global $dbc;
@@ -1940,7 +1940,7 @@ function count_conges_val($pid,$date1,$date2,$type='CP') {
 }
 
 //=====================================================================
-// notification changement de rÙle
+// notification changement de r√¥le
 //=====================================================================
 
 function notify_on_role_change($previous, $new, $section, $type) {
@@ -1958,10 +1958,10 @@ function notify_on_role_change($previous, $new, $section, $type) {
             $sname=get_section_name("$section");
             $Subject="cadre de permanence - ".$sname;
             $Mailcontent = "Bonjour,\n
-Pour information, le cadre d'astreinte a changÈ\npour : ".$sname."\n";
-            $Mailcontent .= "rÙle:  ".get_groupe_description($type)."\n";
-            $Mailcontent .= "le ".date("d-m-Y")." ‡ ".date("H:i")."\n\n";
-            if ( intval($previous) > 0 ) $Mailcontent .= "Jusqu'ici c'Ètait: ".$p."\n";
+Pour information, le cadre d'astreinte a chang√©\npour : ".$sname."\n";
+            $Mailcontent .= "r√¥le:  ".get_groupe_description($type)."\n";
+            $Mailcontent .= "le ".date("d-m-Y")." √† ".date("H:i")."\n\n";
+            if ( intval($previous) > 0 ) $Mailcontent .= "Jusqu'ici c'√©tait: ".$p."\n";
             $Mailcontent .= "maintenant c'est: ".$n."\n";
         
             $nb = mysendmail("$destid" , $fromid , "$Subject" , "$Mailcontent" );
@@ -2122,7 +2122,7 @@ du ".$EH_DATE_DEBUT." au ".$EH_DATE_FIN." (".$EH_DEBUT."-".$EH_FIN."), ";
 }
 
 //=====================================================================
-// nombre d'inscrits avec une compÈtence valide
+// nombre d'inscrits avec une comp√©tence valide
 //=====================================================================
 
 function get_nb_competences($evenement,$partie,$poste=0) {
@@ -2191,7 +2191,7 @@ function get_nb_competences($evenement,$partie,$poste=0) {
 }
 
 //=====================================================================
-// afficher la liste des codes ÈvÈnements
+// afficher la liste des codes √©v√©nements
 //=====================================================================
 
 function get_event_and_renforts($evenement,$exclude_canceled_r=true) {
@@ -2213,7 +2213,7 @@ function get_event_and_renforts($evenement,$exclude_canceled_r=true) {
 //=====================================================================
 function fixcharset($string) {
     return strtr($string, 
-          "¿¡¬√ƒ≈«…»… ÀÃÕŒœ“”‘’÷Ÿ⁄€‹›‡·‚„‰ÂÁËÈÍÎÏÌÓÔÚÛÙıˆ˘˙˚¸˝ˇ∞í", 
+          "√Ä√Å√Ç√É√Ñ√Ö√á√â√à√â√ä√ã√å√ç√é√è√í√ì√î√ï√ñ√ô√ö√õ√ú√ù√†√°√¢√£√§√•√ß√®√©√™√´√¨√≠√Æ√Ø√∞√≤√≥√¥√µ√∂√π√∫√ª√º√Ω√ø¬∞‚Äô", 
           "AAAAAACEEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyyo'");
 }
 
@@ -2250,7 +2250,7 @@ function cookie_test_js() {
         document.cookie = \"essai=cookie\";
         if (! document.cookie) 
         {
-            swalAlert(\"Les cookies ne sont pas acceptÈs, veuillez changer les options du navigateur\");
+            swalAlert(\"Les cookies ne sont pas accept√©s, veuillez changer les options du navigateur\");
         }
     }
     </script>";
@@ -2297,7 +2297,7 @@ function dim_ready($evenement) {
 
 
 //=====================================================================
-// dates d'expiration des compÈtences
+// dates d'expiration des comp√©tences
 //=====================================================================
 function datesExpiration($nbmonthes,$default,$yearstart=null) {
      $month=1;
@@ -2426,7 +2426,7 @@ function gelocalize($code, $type='E'){
                 section s1 left join section s2 on s1.S_PARENT=s2.S_ID
                 where s1.S_ID = p.P_SECTION
                 and P_ID=".intval($code);
-        $result=mysqli_query($dbc,$query);
+		$result=mysqli_query($dbc,$query);
            $row=mysqli_fetch_array($result);
         $address=$row["P_ADDRESS"]." ".$row["P_ZIP_CODE"]." ".$row["P_CITY"];
         if (in_array($row["S_CODE"], $OM)) $address .= " ".$row["S_DESCRIPTION"];
@@ -2463,10 +2463,9 @@ function gelocalize($code, $type='E'){
     
     // experimental OSM
     if ( $api_provider == 'osm' ) {
-        $address .= " ".$geolocalize_default_country;
         $address=urlencode(fixcharset($address));
-        $url = $osm_geocode_api."/search/?format=json&addressdetails=1&limit=1&q={".$address."}";
-        // get the json response
+        $url = $osm_geocode_api."/search?q=".$address."&autocomplete=0&index=address&limit=1&returntruegeometry=false";
+	// get the json response
         $resp_json = @file_get_contents($url);
         // decode the json
         $resp = json_decode($resp_json, true);
@@ -2477,7 +2476,6 @@ function gelocalize($code, $type='E'){
         // get the important data
         $lat = (float)$resp['features'][0]['geometry']['coordinates'][1];
         $lng = (float)$resp['features'][0]['geometry']['coordinates'][0];
-        
         if (! $lat==0 and ! $lng==0){
             $query = "insert into geolocalisation (TYPE,CODE,CODE2,LAT,LNG) values ('".$type."', ".intval($code).",".intval($code2).", '".floatval($lat)."','".floatval($lng)."' )";
             $result = mysqli_query($dbc,$query);
@@ -2686,7 +2684,7 @@ function display_children0($parent, $level, $max, $expand, $order='hierarchique'
                     echo $img;
                 }
 
-                echo " <a href='javascript:displaymanager($S_ID)'><span class=badge style='background-color:$mycolor; color:$mydarkcolor; vertical-align: middle;' title='Voir le dÈtail' >$S_CODE</span></a>
+                echo " <a href='javascript:displaymanager($S_ID)'><span class=badge style='background-color:$mycolor; color:$mydarkcolor; vertical-align: middle;' title='Voir le d√©tail' >$S_CODE</span></a>
                  <span class='small hide_mobile2' > - $S_DESCRIPTION</span><br>"; 
                 $i++;
                 if ( $expand == 'true') $mystyle='';
@@ -2978,7 +2976,7 @@ function companychoice($section,$suggestedcompany,$includeparticulier=true,$cate
         if ( $suggestedcompany == 0 ) $selected='selected';
         else $selected ='';
         if ( $category  == 'EXT' ) $u='Particulier';
-        else $u='Non prÈcisÈ';
+        else $u='Non pr√©cis√©';
         $selectbox .= "<option value='0' $selected >... ".$u." ...</option>";
     }
     if (is_iphone()) $big_device=false;
@@ -3206,7 +3204,7 @@ function nbjoursdumois($month, $year){
 }
 
 //=====================================================================
-// combien y a t'il d'engagements pour la pÈriode
+// combien y a t'il d'engagements pour la p√©riode
 //=====================================================================
 function get_nb_inscriptions($P_ID, $year1, $month1, $day1,$year2, $month2, $day2 , $EH_ID=0, $exclude_evenement=0, $type_evenement='ALL') {
     global $dbc;
@@ -3259,7 +3257,7 @@ function get_nb_inscriptions_hour($P_ID, $year, $month, $day, $hour_start, $hour
 
 function get_nb_engagements( $type, $ID, $year1, $month1, $day1,$year2, $month2, $day2 , $exclude_evenement=0) {
     global $dbc;
-    // retourne le nombre d'engagements du vÈhicule (V) ou matÈriel (M) sur la plage de dates
+    // retourne le nombre d'engagements du v√©hicule (V) ou mat√©riel (M) sur la plage de dates
     if ( $type == 'V' ) 
         $query="select count(distinct e.E_CODE) as NB from 
             evenement_vehicule ev, evenement e, evenement_horaire eh
@@ -3288,7 +3286,7 @@ function get_nb_engagements( $type, $ID, $year1, $month1, $day1,$year2, $month2,
 }
 
 //=====================================================================
-// est ce qu'un pompier donnÈ a des disponibilitÈs sur un pÈriode?
+// est ce qu'un pompier donn√© a des disponibilit√©s sur un p√©riode?
 //=====================================================================
 function is_dispo($P_ID, $year1, $month1, $day1,$year2, $month2, $day2) {
     global $dbc;
@@ -3302,7 +3300,7 @@ function is_dispo($P_ID, $year1, $month1, $day1,$year2, $month2, $day2) {
 }
 
 //=====================================================================
-// est ce qu'un pompier donnÈ est disponible sur un pÈriode?
+// est ce qu'un pompier donn√© est disponible sur un p√©riode?
 //=====================================================================
 function is_dispo_period( $P_ID, $year1, $month1, $day1, $period ) {
     global $dbc;
@@ -3317,7 +3315,7 @@ function is_dispo_period( $P_ID, $year1, $month1, $day1, $period ) {
 }
 
 //=====================================================================
-// affiche le personnel disponible pour la pÈriode 1,2,3,4
+// affiche le personnel disponible pour la p√©riode 1,2,3,4
 //=====================================================================
 function personnel_dispo($year, $month, $day, $type, $poste, $section) {
     global $dbc;
@@ -3410,7 +3408,7 @@ function personnel_dispo_ou_non($poste, $section) {
 }
 
 //=====================================================================
-// compte le personnel disponible pour la pÈriode J, N 
+// compte le personnel disponible pour la p√©riode J, N 
 //=====================================================================
 function count_personnel_dispo($year, $month, $day, $type, $section) {
     global $dbc;
@@ -3429,7 +3427,7 @@ function count_personnel_dispo($year, $month, $day, $type, $section) {
 }
     
 //=====================================================================
-// affiche date franÁaise au format "lundi 1er" ...
+// affiche date fran√ßaise au format "lundi 1er" ...
 //=====================================================================
 
 function date_fran($month, $day, $year, $short = 0) {
@@ -3500,7 +3498,7 @@ function check_compte_unknown() {
 }
 
 //=====================================================================
-// datediff retourne la diffÈrence en jours
+// datediff retourne la diff√©rence en jours
 //=====================================================================
 
 function my_date_diff($date1,$date2) {
@@ -3512,7 +3510,7 @@ function my_date_diff($date1,$date2) {
 }
 
 //=====================================================================
-//prÈnoms, premiËres lettres en majuscule
+//pr√©noms, premi√®res lettres en majuscule
 //=====================================================================
 
 function my_ucfirst($str) {
@@ -3654,7 +3652,7 @@ function get_vehicules_inscrits($evenement) {
             order by v.TV_CODE, v.V_MODELE";
     $result=mysqli_query($dbc,$query);
     if ( mysqli_num_rows($result) > 0 ) 
-        $liste .= "\nLes vÈhicules suivants sont engagÈs:\n";
+        $liste .= "\nLes v√©hicules suivants sont engag√©s:\n";
     while ($row=@mysqli_fetch_array($result)) {
          if ( $row["TFV_NAME"] <> "" ) $TFV_NAME= "(".$row["TFV_NAME"].")";
         else $TFV_NAME="";
@@ -3832,8 +3830,8 @@ function show_names_dest($list) {
 
 function is_chef($pid, $section) {
     global $dbc;
-    // test si la personne possËde un rÙle bÈnÈficiant de la permission 56 (voir personnel local)
-    // sur la section ou sur une section supÈrieure
+    // test si la personne poss√®de un r√¥le b√©n√©ficiant de la permission 56 (voir personnel local)
+    // sur la section ou sur une section sup√©rieure
      $query="select sr.S_ID from section_role sr, habilitation h
              where sr.P_ID='".$pid."'
              and sr.GP_ID = h.GP_ID
@@ -3847,7 +3845,7 @@ function is_chef($pid, $section) {
     return false;
 }
 
-// fonction utilisÈe pour protection civile
+// fonction utilis√©e pour protection civile
 function is_formateur($pid) {
     global $dbc;
      $query="select count(*) as NB from qualification q, poste p
@@ -3859,7 +3857,7 @@ function is_formateur($pid) {
     return $row["NB"];
 }
 
-// test si compÈtence valide
+// test si comp√©tence valide
 function has_competence_valide($pid,$competence) {
     global $dbc;
      $query="select count(1) as NB from qualification q, poste p
@@ -3873,7 +3871,7 @@ function has_competence_valide($pid,$competence) {
     else return false;
 }
 
-// fonction utilisÈe pour protection civile
+// fonction utilis√©e pour protection civile
 function get_formateurs($section) {
     global $dbc;
       $liste="";
@@ -3892,7 +3890,7 @@ function get_formateurs($section) {
 }
 
 //=====================================================================
-// classe gestion des entitÈs
+// classe gestion des entit√©s
 //=====================================================================
 
 function get_section_code($id) {
@@ -4050,7 +4048,7 @@ function get_section_of_consommable($id) {
 }
 
 //=====================================================================
-// vÈrifier si n'a pas permission AccËs en lecture totale 40 
+// v√©rifier si n'a pas permission Acc√®s en lecture totale 40 
 //=====================================================================
 
 function test_permission_level($permission,$target='SES_SECTION') {
@@ -4062,17 +4060,17 @@ function test_permission_level($permission,$target='SES_SECTION') {
         $my_departement=$_SESSION['SES_SECTION'];
         // si on est dans une antenne
         if ( is_lowest_level($_SESSION['SES_SECTION']) ) {
-            // on a toujours permission de voir dans son dÈpartement
+            // on a toujours permission de voir dans son d√©partement
             $my_departement=$_SESSION['SES_PARENT'];
             if ( $filter == $my_departement ) return true;
-            // et dans les antennes du dÈpartement 
+            // et dans les antennes du d√©partement 
             $parent_filter=get_section_parent("$filter");
             if ( $parent_filter == $my_departement ) return true; 
         }
         // sinon Warning
         echo "<div align='center' class='alert alert-warning' role='alert'>
                 <i class='fa fa-exclamation-triangle' style='color:orange;'></i> 
-                Vous n'avez les permissions de voir les donnÈes au niveau choisi, <b>\"".get_section_code_and_name("$filter")."\"</b>, la liste a donc ÈtÈ restreinte ‡ votre niveau de rattachement, <b>\" ".get_section_code_and_name($my_departement)."\"</b>.
+                Vous n'avez les permissions de voir les donn√©es au niveau choisi, <b>\"".get_section_code_and_name("$filter")."\"</b>, la liste a donc √©t√© restreinte √† votre niveau de rattachement, <b>\" ".get_section_code_and_name($my_departement)."\"</b>.
             </div>";
         $filter=$my_departement;
         $_SESSION['filter']=$filter;
@@ -4259,7 +4257,7 @@ function is_operateur_pc($pid,$evenement) {
             where tp.TP_ID = ep.TP_ID
             and ep.E_CODE in (select E_CODE from evenement where E_CODE=".$evenement." or E_PARENT=".$evenement.")
             and ep.P_ID=".$pid."
-            and (tp.TP_LIBELLE like '% P.C%' or tp.TP_LIBELLE like '% PC%' or tp.TP_LIBELLE = 'Chef de poste' or tp.TP_LIBELLE = 'RÈdacteur')";
+            and (tp.TP_LIBELLE like '% P.C%' or tp.TP_LIBELLE like '% PC%' or tp.TP_LIBELLE = 'Chef de poste' or tp.TP_LIBELLE = 'R√©dacteur')";
     $result=mysqli_query($dbc,$query);
     $row=@mysqli_fetch_array($result);
     if ( @$row[0] == '1' ) return true;
@@ -4345,8 +4343,8 @@ function get_description_statut($statut) {
     $row=mysqli_fetch_array($result);
     $FC=@$row[0]; $FD=@$row[1];
     if ( $syndicate == 1 ) {
-        if ( $FC == 'VAL'  ) $FD = 'ValidÈe trÈsorier';
-        else if ( $FC == 'VAL1' ) $FD = 'ValidÈe prÈsident';
+        if ( $FC == 'VAL'  ) $FD = 'Valid√©e tr√©sorier';
+        else if ( $FC == 'VAL1' ) $FD = 'Valid√©e pr√©sident';
     }
     return $FD;
 }
@@ -4393,15 +4391,15 @@ function get_position ($id) {
 }
 
 //=====================================================================
-// write config base de donnÈes
+// write config base de donn√©es
 //=====================================================================
 
 function write_db_config ($mysqlserver,$mysqluser,$mysqlpassword,$database) {
   global $config_file;
   if ( is_file ($config_file)) unlink($config_file);
   $fh = fopen($config_file, 'w') or die (
-    "<font color=red><b>Impossible d'Ècrire le fichier $config_file.
-    <br> VÈrifier les permissions sur le filesystem<br>
+    "<font color=red><b>Impossible d'√©crire le fichier $config_file.
+    <br> V√©rifier les permissions sur le filesystem<br>
     <a href=\"javascript:history.back(1)\">Retour</a>");
 
   $mysqlpassword = simple_crypto($mysqlpassword);
@@ -4417,7 +4415,7 @@ function write_db_config ($mysqlserver,$mysqluser,$mysqlpassword,$database) {
 }
 
 //=====================================================================
-// connexion base de donnÈes
+// connexion base de donn√©es
 //=====================================================================
 
 function connect () {
@@ -4448,7 +4446,7 @@ function custom_fetch_array($result) {
 }
 
 //=====================================================================
-// maintenance de la base de donnÈes
+// maintenance de la base de donn√©es
 //=====================================================================
 
 function database_optimize () {
@@ -4500,7 +4498,7 @@ function database_cleanup () {
 
 function set_old_members () {
     global $dbc;
-    // changement automatique de position des personnes avec date de fin renseignÈe
+    // changement automatique de position des personnes avec date de fin renseign√©e
     global $log_actions, $syndicate;
     $query="select min(P_ID) from pompier where GP_ID=4 and P_OLD_MEMBER=0";
     $result=mysqli_query($dbc,$query);
@@ -4528,7 +4526,7 @@ function set_old_members () {
 
 function manage_suspensions() {
     global $dbc;
-    // changement automatique des personnes avec date suspendu renseignÈe
+    // changement automatique des personnes avec date suspendu renseign√©e
     global $log_actions;
     $query="select min(P_ID) from pompier where GP_ID=4 and P_OLD_MEMBER=0";
     $result=mysqli_query($dbc,$query);
@@ -4596,7 +4594,7 @@ function cleanup_trombi() {
 }
 
 //=====================================================================
-// dÈconnexion base de donnÈes
+// d√©connexion base de donn√©es
 //=====================================================================
 
 function disconnect () {
@@ -4605,7 +4603,7 @@ function disconnect () {
 }
 
 //=====================================================================
-// trouver le nombre de sessions d'un ÈvÈnement
+// trouver le nombre de sessions d'un √©v√©nement
 //=====================================================================
 
 function get_nb_sessions($event) {
@@ -4713,7 +4711,7 @@ function check_rights($id, $fonctionnalite, $section="undef"){
             }
         }
     }
-    // CAS 3 : restriction des permissions pour fonctionnalitÈs avec F_FLAG = 1
+    // CAS 3 : restriction des permissions pour fonctionnalit√©s avec F_FLAG = 1
     if (( $nbsections == 0 ) and ( $granted > 0 )) {
         if (get_func_flag($_f) == 1 ) {
             $_g=get_highest_section_where_granted($_i, $_f);
@@ -4723,7 +4721,7 @@ function check_rights($id, $fonctionnalite, $section="undef"){
         }
     }
     if (( $granted == 0 ) && ( $_nb > 0 )) {
-        // CAS 4 : habilitation 24 (permissions extÈrieures)+ $_f : return true
+        // CAS 4 : habilitation 24 (permissions ext√©rieures)+ $_f : return true
         $query="select count(*) as NB from
             habilitation h, pompier p
             where (h.GP_ID = p.GP_ID or h.GP_ID = p.GP_ID2)
@@ -4747,7 +4745,7 @@ function check_rights($id, $fonctionnalite, $section="undef"){
 }
 
 //=====================================================================
-// est ce qu'une personne est dans l'organigramme de section ou dÈp?
+// est ce qu'une personne est dans l'organigramme de section ou d√©p?
 //=====================================================================
 function has_role_in_section ($pid,$section) {
     global $dbc;
@@ -4808,8 +4806,8 @@ function get_func_flag($fonctionnalite){
 // get permission location
 //=====================================================================
 
-// retourne la section la plus ÈlevÈe dans l'organigramme o˘ 
-// les permissions sur une fonctionnalitÈ sont donnÈes ‡ une personne
+// retourne la section la plus √©lev√©e dans l'organigramme o√π 
+// les permissions sur une fonctionnalit√© sont donn√©es √† une personne
 function get_highest_section_where_granted($id, $fonctionnalite){
     global $dbc,$nbsections;
     $_i=intval($id);
@@ -4860,7 +4858,7 @@ function get_highest_section_where_granted($id, $fonctionnalite){
 }
 
 // retourne les sections avec permissions
-// sur une fonctionnalitÈ pour une personne
+// sur une fonctionnalit√© pour une personne
 function get_all_sections_where_granted($id, $fonctionnalite, $level=""){
     global $dbc;
          $_i=intval($id);
@@ -4897,7 +4895,7 @@ function get_all_sections_where_granted($id, $fonctionnalite, $level=""){
             }
          }
 
-        // les permissions de rÙles
+        // les permissions de r√¥les
          $query="select distinct sr.S_ID, sf.NIV from
             habilitation h, section_role sr, section_flat sf
             where sr.GP_ID = h.GP_ID
@@ -5110,7 +5108,7 @@ function save_personnel_formation($pid, $psid, $tfcode, $date, $lieu, $resp, $co
 }
 
 //=====================================================================
-// rÈcupÈrer compÈtences de la personne
+// r√©cup√©rer comp√©tences de la personne
 //=====================================================================
 
 function get_competences($P_ID, $TE_CODE) {
@@ -5206,15 +5204,15 @@ function check_php() {
     global $php_minimum_version, $php_maximum_version, $error_pic;
     if (! version_compare(PHP_VERSION, $php_minimum_version, '>=')) {
         write_msgbox("erreur PHP",$error_pic,"Votre version PHP est <b>".PHP_VERSION."</b> <br>
-            n'est plus supportÈe.<br>Il faut upgrader ‡ une version <br>
-            au moins Ègale ‡ <b>".$php_minimum_version."</b><p><div align=center>
+            n'est plus support√©e.<br>Il faut upgrader √† une version <br>
+            au moins √©gale √† <b>".$php_minimum_version."</b><p><div align=center>
             <a href=\"javascript:document.location.reload()\"><input type='button' class='btn btn-info' value='Recommencer'></a></div>",30,30);
           exit;
     }
     if (! version_compare(PHP_VERSION, $php_maximum_version, '<=')) {
         write_msgbox("erreur PHP",$error_pic,"Votre version PHP est <b>".PHP_VERSION."</b> <br>
-            n'est pas encore supportÈe.<br>Il faut utiliser une version plus ancienne<br>
-            au plus Ègale ‡ <b>".$php_maximum_version."</b><p><div align=center>
+            n'est pas encore support√©e.<br>Il faut utiliser une version plus ancienne<br>
+            au plus √©gale √† <b>".$php_maximum_version."</b><p><div align=center>
             <a href=\"javascript:document.location.reload()\"><input type='button' class='btn btn-info' value='Recommencer'></a></div>",30,30);
           exit;
     }
@@ -5286,7 +5284,7 @@ function fill_horaires_start($person) {
     $date=date('Y-m-d');
     $year=date('Y');
     $week=date('W');
-    // cas particulier, on enregistre sur Y+1 si la derniere semaine est a cheval sur 2 annÈes
+    // cas particulier, on enregistre sur Y+1 si la derniere semaine est a cheval sur 2 ann√©es
     $month=date('m');
     if ( $month == '12' and $week == '01' ) $year = $year + 1;
     
@@ -5343,7 +5341,7 @@ function is_garde_sp($evenement) {
 }
 
 //=====================================================================
-// rÈcupÈrer les informations de session et tester la sÈcu
+// r√©cup√©rer les informations de session et tester la s√©cu
 //=====================================================================
 function check_all($fonctionnalite, $page="") {
     global $dbc;
@@ -5386,7 +5384,7 @@ function check_all($fonctionnalite, $page="") {
         insert_log('ERRP', $_SESSION['id'], $_SERVER['REQUEST_URI']." ".$FONC);
         exit;
     }
-    // mise ‡ jour table audit
+    // mise √† jour table audit
     $query="update audit set A_FIN =NOW(), A_LAST_PAGE=\"".$page."\" where P_ID=".intval($_SESSION['id'])." and A_DEBUT >='".$_SESSION['SES_DEBUT']."' and A_BROWSER='".$_SESSION['SES_BROWSER']."'";
     $result=mysqli_query($dbc,$query);
 }
@@ -5420,7 +5418,7 @@ where e_id = '$id'";
                     }
                     else {
                         $styleEvt="green";
-                        $factureStatut .= " et acceptÈ";
+                        $factureStatut .= " et accept√©";
                         $factureStatutIco="<i class='fa fa-check-square' style='color:green;' title=\"$factureStatut\"></i>";
                     }
                 }
@@ -5436,7 +5434,7 @@ where e_id = '$id'";
                 $factDate=$day.'/'.$month.'/'.$year;
                 if (checkdate($month,$day,$year)){
                    $factStatutCode = 'facture';
-                    $factureStatut = "Facture Èmise le $factDate";
+                    $factureStatut = "Facture √©mise le $factDate";
                     $styleEvt="orange";
                     $factureStatutIco="<i class='fa fa-check-square' style='color:orange;' title=\"$factureStatut\"></i>";
                 }
@@ -5468,7 +5466,7 @@ where e_id = '$id'";
                 $paiementDate=$day.'/'.$month.'/'.$year;
                 if (checkdate($month,$day,$year)){
                    $factStatutCode = 'paiement';
-                    $factureStatut = "Paiement enregistrÈ...";
+                    $factureStatut = "Paiement enregistr√©...";
                     $styleEvt="blue";
                     $factureStatutIco="<i class='fa fa-check-square' style='color:".$mydarkcolor.";' title=\"$factureStatut\"></i>";
                 }
@@ -5499,13 +5497,13 @@ where e_id = '$id'";
 }
 
 //=====================================================================
-// choix du type d'ÈlÈment facturable
+// choix du type d'√©l√©ment facturable
 //=====================================================================
 function write_select_type_form($number, $value, $new='false') {
     global $default_money_symbol, $dbc, $organisateur;
     $selectForm = "<select class='type form-control select-control' id='element".$number."' name='element".$number."'>";
-    $selectForm .= "<option value='".$value."' >Choisir ÈlÈment facturable</option>";
-    $selectForm .= "\n<OPTGROUP LABEL=\"ElÈments Simples\" style=\"background-color:#e6e6e6;\">";
+    $selectForm .= "<option value='".$value."' >Choisir √©l√©ment facturable</option>";
+    $selectForm .= "\n<OPTGROUP LABEL=\"El√©ments Simples\" style=\"background-color:#e6e6e6;\">";
     $query1="select TEF_CODE, TEF_NAME from type_element_facturable order by TEF_NAME asc";
     $result1=mysqli_query($dbc,$query1);
     while ($row1=@mysqli_fetch_array($result1)) {
@@ -5527,7 +5525,7 @@ function write_select_type_form($number, $value, $new='false') {
         $S_ID=$row1["S_ID"];
         $S_CODE=$row1["S_CODE"];
         if ( $S_ID <> $prev ) {
-            $selectForm .= "\n<OPTGROUP LABEL=\"ElÈments spÈcifiques $S_CODE\" style=\"background-color:#e6e6e6;\" class='smalldropdown'>";
+            $selectForm .= "\n<OPTGROUP LABEL=\"El√©ments sp√©cifiques $S_CODE\" style=\"background-color:#e6e6e6;\" class='smalldropdown'>";
             $prev=$S_ID;
         }
         $TEF_NAME=$row1["TEF_NAME"];
@@ -5588,7 +5586,7 @@ function display_post_get() {
 function simple_crypto( $string, $action = 'e' ) {
     if (! function_exists('openssl_encrypt')) 
         return $string;
-    $secret_key = 'GÈnÈral';
+    $secret_key = 'G√©n√©ral';
     $secret_iv = 'Normal';
     $output = false;
     $encrypt_method = "AES-256-CBC";
@@ -5605,7 +5603,7 @@ function simple_crypto( $string, $action = 'e' ) {
 }
 
 //=====================================================================
-//Fonction utilisÈe pour le planning HTML et Excel
+//Fonction utilis√©e pour le planning HTML et Excel
 //=====================================================================
 function get_status($P_ID,$year,$month,$day,$type='html') {
     global $gardes, $N, $G, $T, $D, $P, $Q, $A, $dbc, $type_evenement;
@@ -5628,7 +5626,7 @@ function get_status($P_ID,$year,$month,$day,$type='html') {
             else {
                 $status=$tot;
                 $style='garde2';
-                $title=" Plusieurs activitÈs diffÈrÈntes pour un total de Garde de ".$tot." heures";
+                $title=" Plusieurs activit√©s diff√©r√©ntes pour un total de Garde de ".$tot." heures";
             }
         }
         else if ( $nb == 1 ) {
@@ -5657,7 +5655,7 @@ function get_status($P_ID,$year,$month,$day,$type='html') {
     else if (isset($N[$day][$P_ID])) {
         $nb=$N[$day][$P_ID];
         $status=$nb;
-        $title="Participation ‡ ".$nb." ÈvÈnements";
+        $title="Participation √† ".$nb." √©v√©nements";
         $style='participe';
         if (strlen($month) == 1 ) $month='0'.$month;
         if (strlen($day) == 1 ) $day='0'.$day;
