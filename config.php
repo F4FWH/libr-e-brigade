@@ -49,10 +49,10 @@ $mygreencolor="#A5E7A5";
 $mygreencolor2="#00FF00";
 $mygreencolor3="#CCFF66";
 
-// Déclaration des variables de configuration
+// DÃ©claration des variables de configuration
 $background = "#FFFFFF" ;                                 // Couleur de fond
 $textcolor = "#00006B" ;                                  // Couleur du texte
-$fontfamily = "Arial" ;                                   // Police d'écran
+$fontfamily = "Arial" ;                                   // Police d'Ã©cran
 
 // colors
 $purple="purple";
@@ -101,16 +101,16 @@ $asterisk="<i class='fa fa-asterisk' style='color:red; position: relative; top: 
 $error_1="Vous devez saisir l'identifiant ou matricule";
 $error_2="Vous devez saisir le mot de passe";
 $error_3="Les identifiants saisis ne sont pas reconnus.";
-$error_4="Votre session a expiré, vous devez vous identifier.";
+$error_4="Votre session a expirÃ©, vous devez vous identifier.";
 $error_5="Identification obligatoire";
-$error_6="Vous n'êtes pas habilités à utiliser cette fonctionnalité de l'application";
+$error_6="Vous n'Ãªtes pas habilitÃ©s Ã  utiliser cette fonctionnalitÃ© de l'application";
 $error_7="L'identifiant ou l'adresse email saisis ne sont pas reconnus.";
-$error_8="Les paramètres fournis à la page sont incorrects.";
-$error_9="Nous avons trouvé plusieurs compte contenant la même adresse mail, merci de renseigner votre identifiant unique.";
+$error_8="Les paramÃ¨tres fournis Ã  la page sont incorrects.";
+$error_9="Nous avons trouvÃ© plusieurs compte contenant la mÃªme adresse mail, merci de renseigner votre identifiant unique.";
 $question_1="Etes vous certain de vouloir supprimer ";
 
-$mois=array("janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre");
-$moisCourt=array("Janv.","Févr.","Mars","Avr.","Mai","Juin","Juil.","Août","Sept.","Oct.","Nov.","Dec.");
+$mois=array("janvier","fÃ©vrier","mars","avril","mai","juin","juillet","aoÃ»t","septembre","octobre","novembre","dÃ©cembre");
+$moisCourt=array("Janv.","FÃ©vr.","Mars","Avr.","Mai","Juin","Juil.","AoÃ»t","Sept.","Oct.","Nov.","Dec.");
 $jours=array("dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi");
 $joursCourt=array("Lun.","Mar.","Mer.","Jeu.","Ven.","Sam.","Dim.");
 
@@ -151,9 +151,9 @@ $MAX_FILE_SIZE_MB = intval(str_replace("M", "", ini_get('upload_max_filesize')))
 if ( $MAX_POST_SIZE_MB <= $MAX_FILE_SIZE_MB ) $MAX_FILE_SIZE_MB = $MAX_POST_SIZE_MB - 1;
 if ( $MAX_FILE_SIZE_MB == 0 ) $MAX_FILE_SIZE_MB = 5;
 $MAX_SIZE =  intval(str_replace("M", "", $MAX_FILE_SIZE_MB)) * 1024 * 1024;
-$MAX_SIZE_ERROR="Attention, votre fichier est trop gros. La taille du fichier attaché ne doit pas dépasser ".$MAX_FILE_SIZE_MB." MB.";
+$MAX_SIZE_ERROR="Attention, votre fichier est trop gros. La taille du fichier attachÃ© ne doit pas dÃ©passer ".$MAX_FILE_SIZE_MB." MB.";
 
-// durée de conservation des données en purge glissante.
+// durÃ©e de conservation des donnÃ©es en purge glissante.
 $days_smslog=1825;
 $days_disponibilite=60;
 
@@ -161,16 +161,16 @@ $days_disponibilite=60;
 $nbmaxpersonnes=500000;
 $nbmaxpersonnesparsection=500;
 
-// nombre maxi de compétences
+// nombre maxi de compÃ©tences
 $nbmaxpostes=300;
 
 // nombre maxi de sections
 $nbmaxsections=1000;
 
-// nombre maxi de niveaux hiérarchiques
+// nombre maxi de niveaux hiÃ©rarchiques
 $nbmaxlevels=5;
 
-// nombre maxi de groupes utilisateurs ou rôles dans organigramme
+// nombre maxi de groupes utilisateurs ou rÃ´les dans organigramme
 $nbmaxgroupes=50;
 
 // extended time limit (used in backup / restore), tableau garde
@@ -205,7 +205,7 @@ $bad_mail_domains=array("wanadoo.fr","orange.fr","yahoo.fr","gmail.fr");
 // impression diplomes
 $numfields_org=12;
 
-// permettre impression totale du diplôme y compris le fond, sur du papier blanc.
+// permettre impression totale du diplÃ´me y compris le fond, sur du papier blanc.
 $printfulldiplome=false;
 
 // periode en secondes rfaraichissement auto SITAC
@@ -232,14 +232,14 @@ $maxchar_mail=10000;
 $whatsapp_chat_url="https://chat.whatsapp.com";
 
 $types_org = array(
-    0=>"Sans préconfiguration",
+    0=>"Sans prÃ©configuration",
     1=>"Association de secourisme",
     2=>"Service d'incendie et Secours",
     3=>"Caserne pompiers",
-    4=>"Gestion des adhérents",
+    4=>"Gestion des adhÃ©rents",
     5=>"Organisation militaire",
-    6=>"Pompiers d'aéroport (SSLIA)",
-    7=>"Hôpital",
+    6=>"Pompiers d'aÃ©roport (SSLIA)",
+    7=>"HÃ´pital",
 );
 
 // colors report
@@ -372,7 +372,6 @@ else {
     $min_numbers_in_phone=@$conf_array[101];
     $levels=[@$conf_array[102],@$conf_array[103],@$conf_array[104],@$conf_array[105],@$conf_array[106]];
     $sous_sections=@$conf_array[107];
-
     if ( $nbsections > 0 ) $casernesp=1;
     else $casernesp=0;
     if ( $sdis or $casernesp or $sslia ) $pompiers=1;
@@ -388,14 +387,16 @@ if ( $timezone <> '' )
 if ( isset ($cisname)) $title="$cisname";
 else $title="eBrigade";
 
-// geolocalisation - sur Google une clé est requises pour les installations récentes après juin 2016
+// geolocalisation - sur Google une clÃ© est requises pour les installations rÃ©centes aprÃ¨s juin 2016
 $google_maps_url="https://maps.google.com/maps/api/js?a=1";
 if ( $api_key <> '' ) $google_maps_url .="&key=".$api_key;
-// géolocalisation Google, payante
+// gÃ©olocalisation Google, payante
 $google_geocode_api="https://maps.googleapis.com/maps/api/geocode";
 // par contre osm est gratuit
-$osm_geocode_api="http://api-adresse.data.gouv.fr";
-// cartes waze
+$osm_geocode_api="https://data.geopf.fr/geocodage";
+
+
+// cartes waze 
 $waze_url="https://www.waze.com/ul?navigate=yes&zoom=17";
 
 // monitoring, used if $ameliorations = 1
@@ -412,7 +413,7 @@ else {
         $debug = true;
 }
 
-// dénomination particulières
+// dÃ©nomination particuliÃ¨res
 if ( $syndicate == 1 ) $renfort_label="participation";
 else $renfort_label="renfort";
 
