@@ -40,7 +40,7 @@ else check_all(41);
 
 if ($company <= 0 ) check_all(41);
 
-// LibellÈ ÈvÈnement
+// Libell√© √©v√©nement
 $lib=((isset ($_GET["lib"]))?"%".$_GET["lib"]."%":"%");
 
 date_default_timezone_set('Europe/Paris');
@@ -69,11 +69,11 @@ $objPHPExcel->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEn
 $stats=array();
 
 // Add the columns heads
-$columns=array('A','B','C','D','E',  'F','G','H','I','J','K','L','M','N','O','P');
-$columns_title=array("Numero","Type","DPS", "ActivitÈ", "Statut","Organisateur",
-                    "Renfort","Lieu","DÈbut","Fin","Heure dÈbut",
-                    "Heure fin","DurÈe (h)","PrÈsents (hors renforts)","Requis","Facture");
-$last='P';
+$columns=array('A','B','C','D','E',  'F','G','H','I','J','K','L','M','N','O','P','Q');
+$columns_title=array("Numero","Type","DPS", "Activit√©", "Statut","Organisateur",
+                    "Renfort","Lieu","D√©but","Fin","Heure d√©but",
+                    "Heure fin","Dur√©e (h)","Pr√©sents (hors renforts)","Requis","Facture","km");
+$last='Q';
 $from_join=""; $fields="";
 if ( $type_evenement <> 'ALL' and $type_evenement <> '') {
     // build smart query for stats
@@ -126,7 +126,7 @@ $query="select E.TE_CODE, TE.TE_LIBELLE, E.E_LIEU, EH.EH_ID,
     and E.E_CODE = EH.E_CODE
     and E.S_ID = S.S_ID";
 
-// recherche par numÈro?
+// recherche par num√©ro?
 $s=0;
 if (intval($search) > 0 ) {
     $query2="select count(*) as NB from evenement where E_CODE=".intval($search);
@@ -135,7 +135,7 @@ if (intval($search) > 0 ) {
     $s=$row2["NB"]; 
 }
 if ( $s == 1 ) $query .= "\n and E.E_CODE=".intval($search);
-// sinon recherche par critËres
+// sinon recherche par crit√®res
 else {
 if ( $ec_mode == 'MC' ) 
     $query .= "\n and TE.TE_CODE = 'MC'";
@@ -189,9 +189,9 @@ while (custom_fetch_array($result)) {
     $organisateur=" ".$S_CODE;
     $evts_list .= ",".get_event_and_renforts($E_CODE,$exclude_canceled_r=true);
 
-    if ( $E_CANCELED == 1 ) $state="ÈvÈnement annulÈ";
-    elseif ( $E_CLOSED == 1 ) $state="inscriptions fermÈes";
-    elseif ( $E_OPEN_TO_EXT == 0 ) $state="inscriptions interdites pour personnes extÈrieures";
+    if ( $E_CANCELED == 1 ) $state="√©v√©nement annul√©";
+    elseif ( $E_CLOSED == 1 ) $state="inscriptions ferm√©es";
+    elseif ( $E_OPEN_TO_EXT == 0 ) $state="inscriptions interdites pour personnes ext√©rieures";
     else  $state="inscriptions ouvertes";
     
     $query2="select count(1) as NB from evenement_horaire where E_CODE=".$E_CODE;
@@ -199,7 +199,7 @@ while (custom_fetch_array($result)) {
     $row2=mysqli_fetch_array($result2);
     $nbsessions=$row2["NB"];
     
-    // cas o˘ on a les permissions de voir l'ÈvÈnement
+    // cas o√π on a les permissions de voir l'√©v√©nement
     if ( $S_HIDE == 0 
         or check_rights($id,41, $S_ID) 
         or $E_OPEN_TO_EXT == 1 
@@ -256,10 +256,17 @@ while (custom_fetch_array($result)) {
          if (check_rights($id, 29, "$S_ID")) 
              $myfact=get_etat_facturation($E_CODE, "txt");
     }
+    $km = "0";
+    $queryc="select sum(EP_KM) as TOTALKM from evenement_participation
+                   where E_CODE=".$E_CODE;
+            $resultkm=mysqli_query($dbc,$queryc);
+            $rowkm=mysqli_fetch_array($resultkm);
+             $km = $rowkm["TOTALKM"];
+
 
     $columns_data=array($E_CODE, $TE_CODE, $TA_SHORT, $E_LIBELLE, $state, $organisateur, 
                         $renfort, $E_LIEU, $EH_DATE_DEBUT, $EH_DATE_FIN, $EH_DEBUT, 
-                        $EH_FIN, $EH_DUREE, $NP, $E_NB, $myfact);
+                        $EH_FIN, $EH_DUREE, $NP, $E_NB, $myfact, $km);
                         
     foreach ( $stats as $stat ) {
         array_push($columns_data, ${$stat});
@@ -289,7 +296,7 @@ $objPHPExcel->getActiveSheet()
 if ( check_rights($id, 15, intval($section))) {
 
     // =======================================================
-    // deuxiËme onglet : personnel
+    // deuxi√®me onglet : personnel
     // =======================================================
 
     $sheet = $objPHPExcel->createSheet();
@@ -299,7 +306,7 @@ if ( check_rights($id, 15, intval($section))) {
 
     // Add the columns heads
     $columns=array('A','B','C','D','E','F','G','H' );
-    $columns_title=array("Nom","PrÈnom","Adresse","Code postal","Ville", "TÈlÈphone", "Email", "Section");
+    $columns_title=array("Nom","Pr√©nom","Adresse","Code postal","Ville", "T√©l√©phone", "Email", "Section");
                 
     foreach ($columns as $c => $letter) {
         $objPHPExcel->getActiveSheet()->setCellValue($letter.'1', utf8_encode($columns_title[$c]));
@@ -316,7 +323,7 @@ if ( check_rights($id, 15, intval($section))) {
     $header=$objPHPExcel->getProperties()->getTitle();
     $sheet->getHeaderFooter()->setOddHeader($header);
     $printby = fixcharset(my_ucfirst($_SESSION['SES_PRENOM']." ".strtoupper($_SESSION['SES_NOM'])));
-    $sheet->getHeaderFooter()->setOddFooter('&L&I' . utf8_encode(" imprimÈ par ".$printby." le ". date('d-m-Y ‡ H:i')) . 
+    $sheet->getHeaderFooter()->setOddFooter('&L&I' . utf8_encode(" imprim√© par ".$printby." le ". date('d-m-Y √† H:i')) . 
                                             '&RPage &P / &N');
 
 
@@ -368,7 +375,7 @@ if ( check_rights($id, 15, intval($section))) {
 
     // Add the columns heads
     $columns=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N');
-    $columns_title=array("Numero","Evenement","Debut","DurÈe", "Equipe","Nom","PrÈnom","Fonction","Adresse","Code postal","Ville", "TÈlÈphone", "Email", "Section");
+    $columns_title=array("Numero","Evenement","Debut","Dur√©e", "Equipe","Nom","Pr√©nom","Fonction","Adresse","Code postal","Ville", "T√©l√©phone", "Email", "Section");
                 
     foreach ($columns as $c => $letter) {
         $objPHPExcel->getActiveSheet()->setCellValue($letter.'1', utf8_encode($columns_title[$c]));
@@ -385,7 +392,7 @@ if ( check_rights($id, 15, intval($section))) {
     $header=$objPHPExcel->getProperties()->getTitle();
     $sheet->getHeaderFooter()->setOddHeader($header);
     $printby = fixcharset(my_ucfirst($_SESSION['SES_PRENOM']." ".strtoupper($_SESSION['SES_NOM'])));
-    $sheet->getHeaderFooter()->setOddFooter('&L&I' . utf8_encode(" imprimÈ par ".$printby." le ". date('d-m-Y ‡ H:i')) . 
+    $sheet->getHeaderFooter()->setOddFooter('&L&I' . utf8_encode(" imprim√© par ".$printby." le ". date('d-m-Y √† H:i')) . 
                                             '&RPage &P / &N');
 
 
@@ -483,7 +490,7 @@ if ( check_rights($id, 15, intval($section))) {
     $header=$objPHPExcel->getProperties()->getTitle();
     $sheet->getHeaderFooter()->setOddHeader($header);
     $printby = fixcharset(my_ucfirst($_SESSION['SES_PRENOM']." ".strtoupper($_SESSION['SES_NOM'])));
-    $sheet->getHeaderFooter()->setOddFooter('&L&I' . utf8_encode(" imprimÈ par ".$printby." le ". date('d-m-Y ‡ H:i')) . 
+    $sheet->getHeaderFooter()->setOddFooter('&L&I' . utf8_encode(" imprim√© par ".$printby." le ". date('d-m-Y √† H:i')) . 
                                             '&RPage &P / &N');
 
 
