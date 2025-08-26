@@ -165,14 +165,14 @@ function writefoot($loadjs=true) {
         $(document).ready(function() {
             This = $('li.mouseMenu');
             
-            // rÃ©cupÃ©rer l'item actif
+            // récupérer l'item actif
             var isActif = sessionStorage.getItem('isActif');
             
             if ($(window).width() >= 992){
-                // rÃ©cupÃ©rer l'Ã©tat du collapse du menu
+                // récupérer l'état du collapse du menu
                 var isCollapsed = sessionStorage.getItem('isCollapsed');
                 if (isCollapsed == 1) {
-                    // si le menu est collapsÃ©
+                    // si le menu est collapsé
                     $('.collapse-menu').css('display', 'none');
                     $('.decollapse-menu').css('display', 'block');
                     $('.dropdown-lateral').find('span').css('display', 'none');
@@ -181,7 +181,7 @@ function writefoot($loadjs=true) {
                     $('.link-doc').css('width', 49).css('left', 0);
                 } 
                 else {
-                    // si le menu n'est pas collapsÃ©
+                    // si le menu n'est pas collapsé
                     $('.decollapse-menu').css('display', 'none');
                     $('.collapse-menu').css('display', 'block');
                     $('.dropdown-lateral').find('span').css('display', 'inline');
@@ -271,7 +271,7 @@ function writefoot($loadjs=true) {
                     This.find('div.sub-menu').find('.sub-link-lateral').css('color', '#303030');
                 }
                 else {
-                    // si le menu est fermÃ©, afficher le menu contextuel
+                    // si le menu est fermé, afficher le menu contextuel
                     var offset = This.offset();
                     $(this).find('div.sub-menu').stop();
                     $(this).find('div.sub-menu').fadeIn(1);
@@ -313,7 +313,7 @@ function writefoot($loadjs=true) {
                 $('.space-left').animate({marginLeft: '44'}, 350);
                 send_menu_status(isCollapsed);
             });
-            // dÃ©collapser le menu
+            // décollapser le menu
             $('.decollapse-menu').on('click', function() {
                 sessionStorage.setItem('isCollapsed', '0');
                 var isCollapsed = sessionStorage.getItem('isCollapsed');
@@ -343,14 +343,14 @@ function writefoot($loadjs=true) {
             This = $('li.mouseMenu');
             // si menu ouvert
             if ($('ul.show')) {
-                // ouvrir le menu latÃ©ral 
+                // ouvrir le menu latéral 
                 $('.button-open').on('click', function() {
                     $('.navbar-lateral').css('left', '0');
                     $('.navbar-lateral').css('width', '285');
-                    // ajouter un filtre opaque Ã  l'ouverture du menu
+                    // ajouter un filtre opaque à l'ouverture du menu
                     $('body').append('<div class=\"background-opacity\"></div>');
                     $('.background-opacity').fadeIn('fast');
-                    // fermer le menu latÃ©ral au clic sur le filtre opaque
+                    // fermer le menu latéral au clic sur le filtre opaque
                     $('.background-opacity').on('click', function() {
                         $('.background-opacity').remove(); 
                         $('.nav-lateral').removeClass('show');
@@ -361,23 +361,23 @@ function writefoot($loadjs=true) {
                     });
                 });
             }
-            // afficher la deuxiÃ¨me partie du menu horinzontal
+            // afficher la deuxième partie du menu horinzontal
             $('.button-left').on('click', function() {
               $('.nav-left').css('display', 'none');
               $('.nav-right').css('display', 'block');
             });
-            // afficher la premiÃ¨re partie du menu horizontal
+            // afficher la première partie du menu horizontal
             $('.button-right').on('click', function() {
               $('.nav-left').css('display', 'flex');
               $('.nav-right').css('display', 'none');
             });
-            // cacher le bouton d'ouverture du menu latÃ©ral et afficher le bouton de fermeture du menu latÃ©ral
+            // cacher le bouton d'ouverture du menu latéral et afficher le bouton de fermeture du menu latéral
             $('.button-open').on('click', function() {
               $('.button-open').css('display', 'none');
               $('.button-close').css('display', 'inline-block');
               $('.link-doc').css('display', 'block');
             });
-            // cacher le bouton de fermeture du menu latÃ©ral et afficher le bouton d'ouverture du menu latÃ©ral
+            // cacher le bouton de fermeture du menu latéral et afficher le bouton d'ouverture du menu latéral
             $('.button-close').on('click', function() {
                 $('.navbar-lateral').css('left', '-270px');
                 $('.background-opacity').remove();
@@ -545,7 +545,7 @@ function write_menu() {
         $btpref[$row["PP_TYPE"]] = $row["PP_VALUE"];
     }
     if ( $disponibilites and check_rights($id, 41) and $btpref["button_disp"] == '1') {
-        if ( $desktop ) $tit='Voir mes disponibilitÃ©s';
+        if ( $desktop ) $tit='Voir mes disponibilités';
         $out .= "<a href='upd_personnel.php?from=default&tab=14&pompier=$id&person=$id&table=1' class='nav-text navtop-hover' 
                     title='".$tit."' role='button'>
                     <span class='navbar-toggler-icon nav-icon'>
@@ -564,7 +564,7 @@ function write_menu() {
     }
 
     if ( $evenements and check_rights($id, 41) and $btpref["button_even"] == '1') {
-        if ( $desktop )  $tit='Voir les activitÃ©s prÃ©vues';
+        if ( $desktop )  $tit='Voir les activités prévues';
         $out .= "<a href='evenement_choice.php?ec_mode=default&page=1' class='nav-text navtop-hover' title='".$tit."' role='button'>
                     <span class='navbar-toggler-icon nav-icon'>
                         <i class=\"far fa-calendar-alt fa-lg\"></i>
@@ -611,20 +611,20 @@ function write_menu() {
             </span>
             </a>
             <div class='dropdown-menu ' aria-labelledby='navbarDropdown' style='position: fixed;top: 41px;left: auto;right: auto;float: none;'>";
-            if ( $syndicate == 1 ) $label = "AdhÃ©rent";
+            if ( $syndicate == 1 ) $label = "Adhérent";
             else $label = "Personnel";
             if (check_rights($id,1)) $out.= "<a class='dropdown-item dropdown-item-profil' href='./ins_personnel.php?category=INT&suggestedcompany=-1'>
             <i class=\"fas fa-plus-circle\" style='color:#28A745'></i>
             $label </a>";
             if (check_rights($id,15) and $evenements==1) $out.= "<a class='dropdown-item dropdown-item-profil' href='./evenement_edit.php?action=create'>
             <i class=\"fas fa-plus-circle\" style='color:#28A745'></i>
-            ActivitÃ©</a>";
+            Activité</a>";
             if (check_rights($id,17) and $vehicules==1) $out.= "<a class='dropdown-item dropdown-item-profil' href='./ins_vehicule.php'>
             <i class=\"fas fa-plus-circle\" style='color:#28A745'></i>
-            VÃ©hicule</a>";
+            Véhicule</a>";
             if (check_rights($id,70) and $materiel==1) $out.= "<a class='dropdown-item dropdown-item-profil' href='./ins_materiel.php?usage=ALL&type=ALL'>
             <i class=\"fas fa-plus-circle\" style='color:#28A745'></i>
-            MatÃ©riel</a>";
+            Matériel</a>";
             if (check_rights($id,71) and $consommables==1) $out.= "<a class='dropdown-item dropdown-item-profil' href='./upd_consommable.php?action=insert&type_conso=ALL'>
             <i class=\"fas fa-plus-circle\" style='color:#28A745'></i>
             Consommable</a>";
@@ -746,7 +746,7 @@ function write_menu() {
     }
     
     // Aide et documentation
-    if ( $desktop ) $tit = 'Aide et Ã  propos';
+    if ( $desktop ) $tit = 'Aide et à propos';
     $out .= "<a class='nav-text navtop-hover' style='padding-top:7px;' href='about.php' title='".$tit."' role='button'>
         <span class='navbar-toggler-icon nav-icon'>
             <i class=\"far fa-question-circle fa-lg\"></i>
@@ -754,7 +754,7 @@ function write_menu() {
     </a>";
     
     
-    // personnel salariÃ©, enregistrer heures
+    // personnel salarié, enregistrer heures
     $query="select P_STATUT from pompier where P_ID=".$id;
     $result = mysqli_query($dbc,$query);
     $row=@mysqli_fetch_array($result);
@@ -776,7 +776,7 @@ function write_menu() {
 }
 
 //=====================================================================
-// Menu latÃ©ral
+// Menu latéral
 //=====================================================================
 
 function write_lateral_menu() {
@@ -868,6 +868,7 @@ function write_lateral_menu() {
 					else {	
 					$menuitem = " \n<a class='nav-link link-lateral' href='".$MI_URL."' title=\"".$MI_TITLE."\">".$MI_NAME."</a>";
 					}
+				}
                 $_SESSION['SOUS_MENU'] = $MI_URL;
                 $previtem = $MI_CODE;
             }
@@ -967,11 +968,11 @@ function write_lateral_menu() {
     $out.="                <script>
                                 if (($(window).width() > 991)) {
                                     if (sessionStorage.getItem('isCollapsed')==1) {
-                                        document.write(\"<div class='collapse-menu' style='width:0px'><i class='fas fa-angle-double-left'></i> RÃ©duire le menu</div>\");
+                                        document.write(\"<div class='collapse-menu' style='width:0px'><i class='fas fa-angle-double-left'></i> Réduire le menu</div>\");
                                         document.write(\"<div class='decollapse-menu' style='width:49px'><i class='fas fa-angle-double-right icon-collapse'></i></div>\");
                                     }
                                     else {
-                                        document.write(\"<div class='collapse-menu' style='width:220px'><i class='fas fa-angle-double-left'></i> RÃ©duire le menu</div>\");
+                                        document.write(\"<div class='collapse-menu' style='width:220px'><i class='fas fa-angle-double-left'></i> Réduire le menu</div>\");
                                         document.write(\"<div class='decollapse-menu'style='width:0px'><i class='fas fa-angle-double-right icon-collapse'></i></div>\"); 
                                     }
                                 }
@@ -1086,7 +1087,7 @@ function write_pointage_links($person) {
     else $finished2=false;
     if ( $finished2 ) {
         $c="Depointer, enregistrer l'heure de fin de la periode de travail meme si elle a deja ete enregistree";
-        $t='La journÃ©e est terminÃ©e';
+        $t='La journée est terminée';
         $link .="&action=depointer";
         $color='#FFA800';
         $pulse="";
@@ -1101,7 +1102,7 @@ function write_pointage_links($person) {
     else {
         $c="Depointer, enregistrer l'heure de fin de la periode de travail";
         $link .="&action=depointer";
-        $t='Cliquez pour dÃ©badger';
+        $t='Cliquez pour débadger';
         $color='#6AB04C';
         $pulse="";
     }
@@ -1155,7 +1156,7 @@ function write_modal_header($label) {
     echo "<div class='modal-header'>
             <h4 class='modal-title' >".$label."</h4>
              <button type='button' class='close noboxshadow' data-dismiss='modal' aria-label='Close'>
-                    <i class='fa fa-times ' aria-hidden='true' data-toggle='tooltip' data-placement='right' title='Fermer cette fenÃªtre'></i>
+                    <i class='fa fa-times ' aria-hidden='true' data-toggle='tooltip' data-placement='right' title='Fermer cette fenêtre'></i>
              </button>
         </div>";
 }
@@ -1178,7 +1179,7 @@ function writeBreadCrumb($pageName=null, $pageName2=NULL, $index2=null, $buttons
     }
     else $lookingfor=end($arr);
     
-    if ( $syndicate == 1 ) $label_personnel='AdhÃ©rents';
+    if ( $syndicate == 1 ) $label_personnel='Adhérents';
     else $label_personnel='Personnel';
  
     $query="select MI_CODE, MI_NAME, menu_item.MG_CODE, MG_NAME from menu_item join menu_group on menu_item.MG_CODE=menu_group.MG_CODE where MI_URL like '".$lookingfor."%'";
